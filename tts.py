@@ -3,7 +3,7 @@ import paths
 import os
 from keys import narakeet_api_key
 
-mock = True
+mock = False
 
 
 def tts(message: str, voice: str, path: str):

@@ -21,7 +21,6 @@ prompts = {
     "description": get_prompt("description"),
     "characters": get_prompt("characters"),
     "shots": get_prompt("shots"),
-    "transitions": get_prompt("transitions"),
     "plot": get_prompt("plot"),
     "script": get_prompt("script"),
     "evaluation": get_prompt("evaluation"),
@@ -34,20 +33,20 @@ character_map = [
     },
     {
         "patterns": [r"(?:^|\s|\")nia(?:$|\s|\")", r"(?:^|\s|\")jones(?:$|\s|\")"],
-        "voice": "Nancy",
+        "voice": "Karen",
     },
     {"patterns": [r"(?:^|\s|\")liam(?:$|\s|\")", r"o.connel"], "voice": "Cillian"},
     {"patterns": [r"marcus", r"okonkwo"], "voice": "Obinna"},
     {"patterns": [r"marko", r"russo"], "voice": "Bruce"},
-    {"patterns": [r"aisha", r"patel"], "voice": "Shilpa"},
+    {"patterns": [r"devika", r"sharma", r"aisha", r"patel"], "voice": "Shilpa"},
     {
         "patterns": [r"(?:^|\s|\")sam(?:$|\s|\")", r"samantha", r"wilson"],
         "voice": "Jodie",
     },
     {"patterns": [r"mike", r"michael", r"jackson"], "voice": "Ronald"},
     {"patterns": [r"dave", r"david", r"kent"], "voice": "Tom"},
-    {"patterns": [r"carmen", r"rodriguez"], "voice": "Mia"},
-    {"patterns": [r"rachel", r"johnson"], "voice": "Ashley"},
+    {"patterns": [r"carmen", r"vega", r"rodriguez"], "voice": "Mia"},
+    {"patterns": [r"rachel", r"johnson"], "voice": "Lisa"},
 ]
 
 
@@ -76,7 +75,13 @@ class Episode:
         with open(os.path.join(self.work_dir, name), "w") as f:
             f.write(str)
 
-    def _gpt(self, messages: list, file_key: str, model: str = "gpt-3.5-turbo"):
+    def _gpt(
+        self,
+        messages: list,
+        file_key: str,
+        model: str = "gpt-3.5-turbo",
+        temperature: float = 1,
+    ):
         if self._debug:
             self._write_file(
                 f"{file_key}-prompt.txt",
@@ -91,10 +96,7 @@ class Episode:
                 "Content-Type": "application/json",
                 "Authorization": f"Bearer {open_ai_api_key}",
             },
-            json={
-                "model": model,
-                "messages": messages,
-            },
+            json={"model": model, "messages": messages, "temperature": temperature},
         )
         if response.status_code == 200:
             output = response.json()["choices"][0]["message"]["content"]
@@ -110,10 +112,21 @@ class Episode:
     def generate(self):
         plot = self._generate_plot()
 
+        print(plot)
+        while True:
+            user_input = input(
+                "Please enter 'y' or 'n': "
+            ).lower()  # Convert user input to lowercase
+            if user_input == "y":
+                break
+            if user_input == "n":
+                raise Exception("cancelled")
+            print("Invalid input. Please try again.")
+
         scripts = []
         prev_script_summary = None
 
-        for step in range(5):
+        for step in range(1):
             try:
                 for attempt in range(scene_attempts):
                     try:
@@ -172,7 +185,7 @@ class Episode:
         ]
 
         # make call to chatgpt
-        return self._gpt(messages, "episode-plot")
+        return self._gpt(messages=messages, file_key="episode-plot", temperature=1.1)
 
     def _generate_script(
         self, scene_id: int, episode_plot, scene_plot: str, prev_scene: str = None
@@ -184,7 +197,6 @@ class Episode:
             {"role": "system", "content": prompts["description"]},
             {"role": "system", "content": prompts["characters"]},
             {"role": "system", "content": prompts["shots"]},
-            {"role": "system", "content": prompts["transitions"]},
             {
                 "role": "system",
                 "content": f"For reference, here is the plot of the entire episode:\n{episode_plot}",
@@ -206,7 +218,12 @@ class Episode:
         ]
 
         # make call to chatgpt
-        output = self._gpt(messages, f"scene-{scene_id}-script")
+        output = self._gpt(
+            messages=messages,
+            file_key=f"scene-{scene_id}-script",
+            model="gpt-4-0314",
+            temperature=1.1,
+        )
 
         # extract summary
         match = re.compile(r"==summary==", re.IGNORECASE).search(output)
@@ -241,7 +258,7 @@ class Episode:
         ]
 
         # make call to chatgpt
-        return self._gpt(messages, "evaluation", "gpt-4-0314")
+        return self._gpt(messages=messages, file_key="evaluation", model="gpt-4-0314")
 
     def build(self):
         episode_script = self._read_file("episode-script.txt")
