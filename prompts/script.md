@@ -2,10 +2,10 @@ For the following scene plot, create a script containing multiple sequences. For
 
 Write each sequence in the following format:
 ```
-[shot #: description of shot]
+[shot #]
 character name: (inflection) message
 ... more lines of dialog
-<transition>
+<transition #>
 ```
 
 After the last sequence write a short summary of the events, conclusion, and any important information from created sequences to pass on to the next scene.

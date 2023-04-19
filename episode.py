@@ -9,6 +9,41 @@ from keys import open_ai_api_key
 
 beats = ["exposition", "rising action", "climax", "falling action", "resolution"]
 scene_attempts = 3
+models = {"plot": "gpt-4-0314", "script": "gpt-4-0314", "evaluation": "gpt-4-0314"}
+
+character_map = [
+    {
+        "id": "Art",
+        "patterns": [r"arthur", r"(?:^|\s|\")art(?:$|\s|\")", r"beechum"],
+        "voice": "Rodney",
+    },
+    {
+        "id": "Nia",
+        "patterns": [r"(?:^|\s|\")nia(?:$|\s|\")", r"(?:^|\s|\")jones(?:$|\s|\")"],
+        "voice": "Karen",
+    },
+    {
+        "id": "Liam",
+        "patterns": [r"(?:^|\s|\")liam(?:$|\s|\")", r"o.connel"],
+        "voice": "Cillian",
+    },
+    {"id": "Marcus", "patterns": [r"marcus", r"okonkwo"], "voice": "Obinna"},
+    {"id": "Marko", "patterns": [r"marko", r"russo"], "voice": "Bruce"},
+    {
+        "id": "Devika",
+        "patterns": [r"devika", r"sharma", r"aisha", r"patel"],
+        "voice": "Shilpa",
+    },
+    {
+        "id": "Sam",
+        "patterns": [r"(?:^|\s|\")sam(?:$|\s|\")", r"samantha", r"wilson"],
+        "voice": "Jodie",
+    },
+    {"id": "Mike", "patterns": [r"mike", r"michael", r"jackson"], "voice": "Ronald"},
+    {"id": "Dave", "patterns": [r"dave", r"david", r"kent"], "voice": "Tom"},
+    {"id": "Carmen", "patterns": [r"carmen", r"vega", r"rodriguez"], "voice": "Mia"},
+    {"id": "Rachel", "patterns": [r"rachel", r"johnson"], "voice": "Lisa"},
+]
 
 
 def get_prompt(name):
@@ -16,38 +51,16 @@ def get_prompt(name):
         return f.read()
 
 
-prompts = {
-    "context": get_prompt("context"),
-    "description": get_prompt("description"),
-    "characters": get_prompt("characters"),
-    "shots": get_prompt("shots"),
-    "plot": get_prompt("plot"),
-    "script": get_prompt("script"),
-    "evaluation": get_prompt("evaluation"),
-}
-
-character_map = [
-    {
-        "patterns": [r"arthur", r"(?:^|\s|\")art(?:$|\s|\")", r"beechum"],
-        "voice": "Rodney",
-    },
-    {
-        "patterns": [r"(?:^|\s|\")nia(?:$|\s|\")", r"(?:^|\s|\")jones(?:$|\s|\")"],
-        "voice": "Karen",
-    },
-    {"patterns": [r"(?:^|\s|\")liam(?:$|\s|\")", r"o.connel"], "voice": "Cillian"},
-    {"patterns": [r"marcus", r"okonkwo"], "voice": "Obinna"},
-    {"patterns": [r"marko", r"russo"], "voice": "Bruce"},
-    {"patterns": [r"devika", r"sharma", r"aisha", r"patel"], "voice": "Shilpa"},
-    {
-        "patterns": [r"(?:^|\s|\")sam(?:$|\s|\")", r"samantha", r"wilson"],
-        "voice": "Jodie",
-    },
-    {"patterns": [r"mike", r"michael", r"jackson"], "voice": "Ronald"},
-    {"patterns": [r"dave", r"david", r"kent"], "voice": "Tom"},
-    {"patterns": [r"carmen", r"vega", r"rodriguez"], "voice": "Mia"},
-    {"patterns": [r"rachel", r"johnson"], "voice": "Lisa"},
-]
+def ask(message: str) -> bool:
+    while True:
+        user_input = input(
+            f"\n{message}\n'y' or 'n':"
+        ).lower()  # Convert user input to lowercase
+        if user_input == "y":
+            return True
+        if user_input == "n":
+            return False
+        print("Invalid input. Please try again.")
 
 
 class Episode:
@@ -79,7 +92,7 @@ class Episode:
         self,
         messages: list,
         file_key: str,
-        model: str = "gpt-3.5-turbo",
+        model: str,
         temperature: float = 1,
     ):
         if self._debug:
@@ -110,23 +123,31 @@ class Episode:
             raise Exception(f"ChatGPT error: {error['error']}")
 
     def generate(self):
-        plot = self._generate_plot()
+        plot_path = os.path.join(
+            paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
+        )
+
+        plot: str = None
+
+        if os.path.exists(plot_path):
+            if ask(
+                "A plot for this episode already exists would you like to skip plot generation?"
+            ):
+                with open(plot_path, "r") as f:
+                    plot = f.read()
+            else:
+                plot = self._generate_plot()
+        else:
+            plot = self._generate_plot()
 
         print(plot)
-        while True:
-            user_input = input(
-                "Please enter 'y' or 'n': "
-            ).lower()  # Convert user input to lowercase
-            if user_input == "y":
-                break
-            if user_input == "n":
-                raise Exception("cancelled")
-            print("Invalid input. Please try again.")
+        if not (ask("Do you want to continue using this plot?")):
+            raise Exception("cancelled")
 
         scripts = []
         prev_script_summary = None
 
-        for step in range(1):
+        for step in range(5):
             try:
                 for attempt in range(scene_attempts):
                     try:
@@ -154,13 +175,14 @@ class Episode:
                         # passing the summary to the next scene
                         prev_script_summary = summary
                         break
-                    except:
-                        print(f"Error on step {step} (attempt {attempt + 1})")
+                    except Exception as e:
+                        print(f"Error on step {step} (attempt {attempt + 1})", e)
                         if attempt == scene_attempts:
                             raise Exception(f"Failed on step {step}")
                         else:
                             continue
-            except:
+            except Exception as e:
+                print("Error generating scene script:", e)
                 break
 
         # format the script
@@ -172,58 +194,91 @@ class Episode:
         # write entire script
         self._write_file("episode-script.txt", episode_script)
 
+        print(f"📺 Episode ${self.id} generated")
+
     def _generate_plot(self):
         print(f"generating episode {self.id}")
 
+        plot_path = os.path.join(
+            paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
+        )
+        if os.path.exists(plot_path):
+            if ask(
+                "A plot for this episode already exists would you like to skip plot generation?"
+            ):
+                with open(plot_path, "r") as f:
+                    return f.read()
+
         # define prompt messages
         messages = [
-            {"role": "system", "content": prompts["context"]},
-            {"role": "system", "content": prompts["description"]},
-            {"role": "system", "content": prompts["characters"]},
-            {"role": "system", "content": prompts["shots"]},
-            {"role": "user", "content": prompts["plot"]},
+            {"role": "system", "content": get_prompt("context")},
+            {"role": "system", "content": get_prompt("description")},
+            {"role": "system", "content": get_prompt("characters")},
+            {"role": "system", "content": get_prompt("shots")},
+            {"role": "user", "content": get_prompt("plot")},
         ]
 
         # make call to chatgpt
-        return self._gpt(messages=messages, file_key="episode-plot", temperature=1.1)
+        return self._gpt(
+            messages=messages,
+            file_key="episode-plot",
+            model=models["plot"],
+            temperature=1.15,
+        )
 
     def _generate_script(
         self, scene_id: int, episode_plot, scene_plot: str, prev_scene: str = None
     ):
         print(f"generating script for scene {scene_id}")
 
-        messages = [
-            {"role": "system", "content": prompts["context"]},
-            {"role": "system", "content": prompts["description"]},
-            {"role": "system", "content": prompts["characters"]},
-            {"role": "system", "content": prompts["shots"]},
-            {
-                "role": "system",
-                "content": f"For reference, here is the plot of the entire episode:\n{episode_plot}",
-            },
-            *(
-                [
-                    {
-                        "role": "system",
-                        "content": f"This is the summary of the previous scene script. Use it for context and to recall important events and information:\n{prev_scene}",
-                    }
-                ]
-                if prev_scene is not None
-                else []
-            ),
-            {
-                "role": "user",
-                "content": prompts["script"].replace("((PLOT))", scene_plot),
-            },
-        ]
+        output: str = None
+        skip: bool = False
 
-        # make call to chatgpt
-        output = self._gpt(
-            messages=messages,
-            file_key=f"scene-{scene_id}-script",
-            model="gpt-4-0314",
-            temperature=1.1,
+        script_path = os.path.join(
+            paths.scenes_dir, f"{self.id}/scene-{scene_id}-script-response.txt"
         )
+        if os.path.exists(script_path):
+            if ask(
+                f"A script for scene {scene_id} already exists would you like to skip generation for this scene?"
+            ):
+                skip = True
+                with open(script_path, "r") as f:
+                    output = f.read()
+
+        if not skip:
+            messages = [
+                {"role": "system", "content": get_prompt("context")},
+                {"role": "system", "content": get_prompt("description")},
+                {"role": "system", "content": get_prompt("characters")},
+                {"role": "system", "content": get_prompt("shots")},
+                {"role": "system", "content": get_prompt("transitions")},
+                {
+                    "role": "system",
+                    "content": f"For reference, here is the plot of the entire episode:\n{episode_plot}",
+                },
+                *(
+                    [
+                        {
+                            "role": "system",
+                            "content": f"This is the summary of the previous scene script. Use it for context and to recall important events and information:\n{prev_scene}",
+                        }
+                    ]
+                    if prev_scene is not None
+                    else []
+                ),
+                {
+                    "role": "user",
+                    "content": get_prompt("script").replace("((PLOT))", scene_plot),
+                },
+            ]
+
+            # make call to chatgpt
+            output = self._gpt(
+                messages=messages,
+                file_key=f"scene-{scene_id}-script",
+                model=models["script"],
+                temperature=1.1,
+            )
 
         # extract summary
         match = re.compile(r"==summary==", re.IGNORECASE).search(output)
@@ -239,6 +294,7 @@ class Episode:
             re.compile(r"dialog:\s+", re.IGNORECASE), "\n", script
         )  # remove dialog label
         script = re.sub(r"\n\n+", "\n", script)  # remove excess new lines
+        script.replace("�", "")  # remove unknown characters
 
         return [script, summary]
 
@@ -248,19 +304,24 @@ class Episode:
         episode_script = self._read_file("episode-script.txt")
 
         messages = [
-            {"role": "system", "content": prompts["characters"]},
-            {"role": "system", "content": prompts["shots"]},
+            {"role": "system", "content": get_prompt("characters")},
+            {"role": "system", "content": get_prompt("shots")},
             {
                 "role": "system",
                 "content": f"the final script of the episode is:\n{episode_script}",
             },
-            {"role": "user", "content": prompts["evaluation"]},
+            {"role": "user", "content": get_prompt("evaluation")},
         ]
 
         # make call to chatgpt
-        return self._gpt(messages=messages, file_key="evaluation", model="gpt-4-0314")
+        return self._gpt(
+            messages=messages,
+            file_key="evaluation",
+            model=models["evaluation"],
+            temperature=0.5,
+        )
 
-    def build(self):
+    def build(self, mock=False):
         episode_script = self._read_file("episode-script.txt")
         lines = episode_script.splitlines()
 
@@ -297,4 +358,5 @@ class Episode:
                     dialog,
                     voice,
                     os.path.join(self.sfx_dir, f"dialog-{line_number}.mp3"),
+                    mock=mock,
                 )

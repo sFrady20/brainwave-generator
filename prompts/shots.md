@@ -1,9 +1,9 @@
-When determining the storyline for the episode, only take in to account stories that can take place in one of these camera shots. Each camera shot should be treated as a separate location without the ability for characters to interact between different shots.
+When determining the storyline for the episode, only take in to account stories that can take place in one of these camera shots. Each camera shot should be treated as a separate location without the ability for characters to interact between different shots. The shots can only fit a set amount of characters, so write the story to have as many 1 on 1 conversations as possible. Characters can not enter or exit the shot, but are fixed in a set location.
 1. (1-4 characters) Rachel sitting at the receptionist desk while characters are standing on the far side of the desk having a discussion.
 2. (1-2 characters) Two characters chatting at the water cooler.
 3. (1-3 characters) David working at his desk in his cubicle, optionally someoneone behind him having a chat.
 4. (1-3 female characters) Female characters standing at the sinks in the womens bathroom, chatting before they get back to work.
-5. (1-4 characters) Characters in a moving elevator, discussing something.
+5. (1-3 characters) Characters in a moving elevator, discussing something.
 6. (2-3 characters) Characters having a secret conversation in the back storage room surrounded by filing cabinets and storage boxes.
 7. (1-2 characters) Devika hard at work in her secluded corner cubicle in the media room. Optionally, another character is trying to speak with her.
 8. (1-3 characters) Marko at his computer in the media room, chatting with up to 2 other collegues.
@@ -18,4 +18,5 @@ When determining the storyline for the episode, only take in to account stories 
 17. (1-2 characters) Characters standing by the printer, chatting as they wait for their documents.
 18. (2-3 characters) A group of characters chatting in the hallway, near the elevator.
 19. (2-3 characters) Art behind his executive desk in his office speaking with other characters.
-20. (1-4 characters) Up to 5 characters in the office party room, having a chat around a pool table.
+20. (1-6 characters) Characters in the office party room, having a chat around a pool table.
+21. (2 characters) Characters in the security office conducting official business. 
