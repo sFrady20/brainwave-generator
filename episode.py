@@ -6,6 +6,7 @@ import re
 import json
 from tts import tts
 from keys import open_ai_api_key
+from datetime import datetime
 
 beats = ["exposition", "rising action", "climax", "falling action", "resolution"]
 scene_attempts = 3
@@ -66,6 +67,7 @@ def ask(message: str) -> bool:
 class Episode:
     id = ""
     work_dir = ""
+    assets_dir = ""
     sfx_dir = ""
     _debug = True
 
@@ -76,7 +78,11 @@ class Episode:
         if not os.path.exists(self.work_dir):
             os.makedirs(self.work_dir)
 
-        self.sfx_dir = os.path.join(self.work_dir, "assets/sfx")
+        self.assets_dir = os.path.join(self.work_dir, "assets")
+        if not os.path.exists(self.assets_dir):
+            os.makedirs(self.assets_dir)
+
+        self.sfx_dir = os.path.join(self.assets_dir, "sfx")
         if not os.path.exists(self.sfx_dir):
             os.makedirs(self.sfx_dir)
 
@@ -122,7 +128,7 @@ class Episode:
                 self._write_file(f"{file_key}-error.txt", json.dumps(error))
             raise Exception(f"ChatGPT error: {error['error']}")
 
-    def generate(self):
+    def generate(self, autoAccept=False):
         plot_path = os.path.join(
             paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
         )
@@ -130,8 +136,11 @@ class Episode:
         plot: str = None
 
         if os.path.exists(plot_path):
-            if ask(
-                "A plot for this episode already exists would you like to skip plot generation?"
+            if (
+                ask(
+                    "A plot for this episode already exists would you like to skip plot generation?"
+                )
+                or autoAccept
             ):
                 with open(plot_path, "r") as f:
                     plot = f.read()
@@ -194,17 +203,20 @@ class Episode:
         # write entire script
         self._write_file("episode-script.txt", episode_script)
 
-        print(f"📺 Episode ${self.id} generated")
+        print(f"📺 Episode {self.id} generated")
 
-    def _generate_plot(self):
+    def _generate_plot(self, autoAccept=False):
         print(f"generating episode {self.id}")
 
         plot_path = os.path.join(
             paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
         )
         if os.path.exists(plot_path):
-            if ask(
-                "A plot for this episode already exists would you like to skip plot generation?"
+            if (
+                ask(
+                    "A plot for this episode already exists would you like to skip plot generation?"
+                )
+                or autoAccept
             ):
                 with open(plot_path, "r") as f:
                     return f.read()
@@ -227,7 +239,12 @@ class Episode:
         )
 
     def _generate_script(
-        self, scene_id: int, episode_plot, scene_plot: str, prev_scene: str = None
+        self,
+        scene_id: int,
+        episode_plot,
+        scene_plot: str,
+        prev_scene: str = None,
+        autoAccept=False,
     ):
         print(f"generating script for scene {scene_id}")
 
@@ -238,8 +255,11 @@ class Episode:
             paths.scenes_dir, f"{self.id}/scene-{scene_id}-script-response.txt"
         )
         if os.path.exists(script_path):
-            if ask(
-                f"A script for scene {scene_id} already exists would you like to skip generation for this scene?"
+            if (
+                ask(
+                    f"A script for scene {scene_id} already exists would you like to skip generation for this scene?"
+                )
+                or autoAccept
             ):
                 skip = True
                 with open(script_path, "r") as f:
@@ -325,9 +345,10 @@ class Episode:
         episode_script = self._read_file("episode-script.txt")
         lines = episode_script.splitlines()
 
+        # build sfx using narakeet
         for line_number, line in enumerate(lines):
             matches = re.search(
-                re.compile(r"^([\w\s]+?)\:\s*\((.+)\)\s*(.+)$", re.IGNORECASE), line
+                re.compile(r"^([\w\s]+?)\:\s*\((.+?)\)\s*(.+)$", re.IGNORECASE), line
             )
 
             if bool(matches):
@@ -360,3 +381,7 @@ class Episode:
                     os.path.join(self.sfx_dir, f"dialog-{line_number}.mp3"),
                     mock=mock,
                 )
+
+        # save status and mark as complete
+        with open(os.path.join(self.assets_dir, "/build.status.json"), "w") as f:
+            json.dump({"complete": True, "completedAt": datetime.now().isoformat()})

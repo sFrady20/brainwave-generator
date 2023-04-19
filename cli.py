@@ -1,14 +1,21 @@
 import argparse
-from episode import Episode, character_map
+from episode import Episode
 import os
 import paths
+from tts import tts
 
 parser = argparse.ArgumentParser(description="Echo a string")
+parser.add_argument(
+    "-y", "--yes", action="store_true", default=False, help="auto accept all"
+)
+
 subparsers = parser.add_subparsers(
     title="subcommands", description="valid subcommands", dest="subcommand"
 )
 
-placeholder_parser = subparsers.add_parser("generate-placehoders")
+# main entry for live streaming episodes
+process_parser = subparsers.add_parser("run")
+
 
 episode_parser = subparsers.add_parser("episode")
 episode_subparsers = episode_parser.add_subparsers(
@@ -38,6 +45,12 @@ build_parser.add_argument(
 args = parser.parse_args()
 
 # Check which subcommand was used and call the appropriate function
+if args.subcommand == "run":
+    while True:
+        episode = Episode()
+        episode.generate(autoAccept=True)
+        episode.build()
+
 if args.subcommand == "episode":
     if args.episode_command == "generate":
         episode_id = args.episode_id

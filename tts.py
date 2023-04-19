@@ -33,9 +33,9 @@ def mock_tts(message: str, voice: str, path: str):
         os.makedirs(dir)
 
     # open the source and destination files in binary mode
-    with open(os.path.join(paths.root_dir, "mock.mp3"), "rb") as source_file, open(
-        path, "wb"
-    ) as destination_file:
+    with open(
+        os.path.join(paths.root_dir, f"placeholders/{voice}.mp3"), "rb"
+    ) as source_file, open(path, "wb") as destination_file:
         # read the contents of the source file in chunks
         chunk_size = 1024  # read 1 KB at a time
         while True:
