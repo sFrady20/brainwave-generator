@@ -14,8 +14,14 @@ subparsers = parser.add_subparsers(
 )
 
 # main entry for live streaming episodes
-process_parser = subparsers.add_parser("run")
-
+run_parser = subparsers.add_parser("run")
+run_parser.add_argument(
+    "-n",
+    "--number",
+    type=int,
+    default=0,
+    help="amount of episodes to generate, leave blank for infinite",
+)
 
 episode_parser = subparsers.add_parser("episode")
 episode_subparsers = episode_parser.add_subparsers(
@@ -46,10 +52,16 @@ args = parser.parse_args()
 
 # Check which subcommand was used and call the appropriate function
 if args.subcommand == "run":
+    runs = 0
     while True:
         episode = Episode()
         episode.generate(autoAccept=True)
         episode.build()
+
+        # quit after n episodes if number arg given
+        runs += 1
+        if args.number > 0 and runs >= args.number:
+            break
 
 if args.subcommand == "episode":
     if args.episode_command == "generate":

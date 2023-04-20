@@ -1,7 +1,7 @@
-When determining the storyline for the episode, only take in to account stories that can take place in one of these camera shots. Each camera shot should be treated as a separate location without the ability for characters to interact between different shots. The shots can only fit a set amount of characters, so write the story to have as many 1 on 1 conversations as possible. Characters can not enter or exit the shot, but are fixed in a set location.
+When determining the storyline for the episode, only take in to account stories that can take place in one of these camera shots. Each camera shot should be treated as a separate location without the ability for characters to interact between different shots. The shots can only fit a set amount of characters, so write the story to have as many 1 on 1 conversations as possible. Keep in mind, the characters can not move around, sit or stand, or enter or exit the shot.
 1. (1-4 characters) Rachel sitting at the receptionist desk while characters are standing on the far side of the desk having a discussion.
 2. (1-2 characters) Two characters chatting at the water cooler.
-3. (1-3 characters) David working at his desk in his cubicle, optionally someoneone behind him having a chat.
+3. (1-3 characters) David working at his desk in his cubicle, optionally someone behind him having a chat.
 4. (1-3 female characters) Female characters standing at the sinks in the womens bathroom, chatting before they get back to work.
 5. (1-3 characters) Characters in a moving elevator, discussing something.
 6. (2-3 characters) Characters having a secret conversation in the back storage room surrounded by filing cabinets and storage boxes.

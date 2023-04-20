@@ -128,34 +128,60 @@ class Episode:
                 self._write_file(f"{file_key}-error.txt", json.dumps(error))
             raise Exception(f"ChatGPT error: {error['error']}")
 
-    def generate(self, autoAccept=False):
-        plot_path = os.path.join(
-            paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
-        )
+    def _update_meta(self, fn):
+        meta_path = os.path.join(self.work_dir, "meta.json")
+        meta = None
+        if os.path.exists(meta_path):
+            with open(meta_path, "r") as f:
+                meta = json.load(f)
+        else:
+            meta = {}
 
+        meta = fn(meta)
+
+        with open(meta_path, "w") as f:
+            json.dump(meta, f)
+
+    def generate(self, autoAccept=False):
+        # initialize the episode meta data
+        def init_meta(meta):
+            meta["buildComplete"] = False
+            meta["rating"] = 5
+            return meta
+
+        self._update_meta(init_meta)
+
+        # find the plot
+        plot_path = os.path.join(self.work_dir, "episode-plot-response.txt")
         plot: str = None
 
-        if os.path.exists(plot_path):
-            if (
-                ask(
+        while plot == None:
+            # if the plot exists, provide an option to skip generation
+            skip_plot_gen = False
+            if os.path.exists(plot_path) and (
+                autoAccept
+                or ask(
                     "A plot for this episode already exists would you like to skip plot generation?"
                 )
-                or autoAccept
             ):
+                skip_plot_gen = True
+
+            # get or generate plot
+            if skip_plot_gen:
                 with open(plot_path, "r") as f:
                     plot = f.read()
             else:
                 plot = self._generate_plot()
-        else:
-            plot = self._generate_plot()
 
-        print(plot)
-        if not (ask("Do you want to continue using this plot?")):
-            raise Exception("cancelled")
+            # ask for plot confirmation
+            if not autoAccept:
+                print(plot)
+                if not ask("Do you want to continue using this plot?"):
+                    plot = None
 
+        # create scripts for each scene
         scripts = []
         prev_script_summary = None
-
         for step in range(5):
             try:
                 for attempt in range(scene_attempts):
@@ -194,11 +220,12 @@ class Episode:
                 print("Error generating scene script:", e)
                 break
 
-        # format the script
+        # format the final script
         episode_script = "\n".join(scripts)
         episode_script = re.sub(
             r"\n\n+", "\n", episode_script
         )  # remove excess new lines
+        episode_script.replace("�", "")  # remove unknown characters
 
         # write entire script
         self._write_file("episode-script.txt", episode_script)
@@ -212,11 +239,8 @@ class Episode:
             paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
         )
         if os.path.exists(plot_path):
-            if (
-                ask(
-                    "A plot for this episode already exists would you like to skip plot generation?"
-                )
-                or autoAccept
+            if autoAccept or ask(
+                "A plot for this episode already exists would you like to skip plot generation?"
             ):
                 with open(plot_path, "r") as f:
                     return f.read()
@@ -255,11 +279,8 @@ class Episode:
             paths.scenes_dir, f"{self.id}/scene-{scene_id}-script-response.txt"
         )
         if os.path.exists(script_path):
-            if (
-                ask(
-                    f"A script for scene {scene_id} already exists would you like to skip generation for this scene?"
-                )
-                or autoAccept
+            if autoAccept or ask(
+                f"A script for scene {scene_id} already exists would you like to skip generation for this scene?"
             ):
                 skip = True
                 with open(script_path, "r") as f:
@@ -383,5 +404,8 @@ class Episode:
                 )
 
         # save status and mark as complete
-        with open(os.path.join(self.assets_dir, "/build.status.json"), "w") as f:
-            json.dump({"complete": True, "completedAt": datetime.now().isoformat()})
+        def update_build_status(meta):
+            meta["buildComplete"] = True
+            return meta
+
+        self._update_meta(update_build_status)
