@@ -179,6 +179,23 @@ class Episode:
                 if not ask("Do you want to continue using this plot?"):
                     plot = None
 
+        # get scene plots
+        scene_plots = []
+        for step in range(5):
+            # get scene plot
+            scene_plots.append(
+                re.search(
+                    re.compile(
+                        r"" + beats[step] + r"(?:\s*:\s*|\s*-\s*)(.+?)\s*(?:\n|$)",
+                        re.IGNORECASE,
+                    ),
+                    plot,
+                ).group(1)
+            )
+
+            if not scene_plots[step]:
+                raise Exception(f"Error creating plot found for step {step}")
+
         # create scripts for each scene
         scripts = []
         prev_script_summary = None
@@ -187,15 +204,7 @@ class Episode:
                 for attempt in range(scene_attempts):
                     try:
                         # get scene plot
-                        scene_plot = re.search(
-                            re.compile(
-                                r""
-                                + beats[step]
-                                + r"(?:\s*:\s*|\s*-\s*)(.+?)\s*(?:\n|$)",
-                                re.IGNORECASE,
-                            ),
-                            plot,
-                        ).group(1)
+                        scene_plot = scene_plots[step]
 
                         # generate script
                         [script, summary] = self._generate_script(
@@ -203,8 +212,8 @@ class Episode:
                             episode_plot=plot,
                             scene_plot=scene_plot,
                             prev_scene=prev_script_summary,
+                            autoAccept=autoAccept,
                         )
-                        scripts = scripts.copy()
                         scripts.append(script)
 
                         # passing the summary to the next scene
