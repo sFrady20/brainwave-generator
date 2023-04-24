@@ -25,7 +25,7 @@ character_map = [
     },
     {
         "id": "Liam",
-        "patterns": [r"(?:^|\s|\")liam(?:$|\s|\")", r"o.connel"],
+        "patterns": [r"(?:^|\s|\")liam(?:$|\s|\")", r"o.connell"],
         "voice": "Cillian",
     },
     {"id": "Marcus", "patterns": [r"marcus", r"okonkwo"], "voice": "Obinna"},
@@ -371,14 +371,19 @@ class Episode:
             temperature=0.5,
         )
 
-    def build(self, mock=False):
+    def build(self, mock=False, force=False):
         episode_script = self._read_file("episode-script.txt")
         lines = episode_script.splitlines()
 
         # build sfx using narakeet
         for line_number, line in enumerate(lines):
+            if not force and os.path.exists(
+                os.path.join(self.sfx_dir, f"dialog-{line_number}.mp3")
+            ):
+                continue
+
             matches = re.search(
-                re.compile(r"^([\w\s]+?)\:\s*\((.+?)\)\s*(.+)$", re.IGNORECASE), line
+                re.compile(r"^(.+?)\:\s*\((.+?)\)\s*(.+)$", re.IGNORECASE), line
             )
 
             if bool(matches):
