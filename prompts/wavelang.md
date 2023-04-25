@@ -28,6 +28,8 @@ ddnu:: David : intrigued : You've really caught my attention now, buddy. I can't
 j0mr:: Carmen : smirking : Morning, Marcus! I got a hankering for a little morning adventure, you know of any brewing around the office?
 nb9f:: Marcus : winking : Carmen, my dear lady of the unexpected entanglements! I happen to know that something exciting this way comes. I happen to know that something exciting this way comes. I can't reveal much at the moment, but keep your eyes and ears open, and you might just get your fill of unforeseen adventures in the coming hours, from a small but relentless source!
 dw1t:: Carmen : intrigued : Well, isn't that mysterious! I guess I'll keep my senses sharp for this elusive excitement. Small but relentless, huh? Must be one hell of a ride then! Thanks for the tip, Marcus!
+f2k9:: Marcus : grateful : Absolutely, Nia. Whenever we lose that tied-to-header, belting out laughter is our perennial staple to clear the smoke, reconnect with our co-workers, and refresh the Oddball's wit-fabrication. Laughter is, after all, the best remedy we possess.
+430g:: Carmen : sympathizing : It's a bummer, Rachel. These random accidents have happened all day today. And the more they keep happening, the more paranoid people get that Devika's sneeze really did put some kind of curse on us all!
 2f02>> [20] > Nia, Marcus
 f1m0:: Nia : conspiratorially : Marcus, what's this I hear about you knowing something that'll disrupt the daily drudgery of this office? You better not be starting any fires!
 ```
@@ -35,6 +37,7 @@ f1m0:: Nia : conspiratorially : Marcus, what's this I hear about you knowing som
 ```
 1m01:: Marcus : innocently : Oh, Nia! Fires? Me? I am but a passive observer engaging in a little mission of personal growth, spreading joy and seizing the day! Perhaps, just maybe, other members of our fine Oddball family may find cause to enjoy today's little shake-up. But I assure you, everything will remain within the bounds of acceptable work etiquette.
 3r18:: Nia : smirking : Well, well, that sounds just extraordinary! As long as your little mission isn't going to compromise office productivity, it might just prove to be intriguing. Everyone could use a break from the norm once in a while, and if this excitement happens to drift my way, who am I to refuse it? Carry on, Marcus, carry on.
+f2k9:: Marcus : grateful : Absolutely, Nia. Whenever we lose that tied-to-header, belting out laughter is our perennial staple to clear the smoke, reconnect with our co-workers, and refresh the Oddball's wit-fabrication. 
 j1f2== In this act, Rachel continues her investigation over the missing donuts through a series of office "interviews." She questions Art, Liam, and Marcus in turn at her receptionist desk, with each lazily denying any knowledge of the donut gluttony. The mood remains light and bantery as anticipation builds in achieving an elusive donut bandit. Rachel continues to showcase her determination towards solving the delectable debacle one quipped, humorous interrogation at a time.
 ```
 

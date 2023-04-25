@@ -6,9 +6,10 @@ import re
 import json
 from tts import tts
 from keys import open_ai_api_key
+from datetime import datetime
 
 version = "0.0.1-alpha.1"
-beats = ["exposition", "rising action", "climax", "falling action", "resolution"]
+beats = ["exposition", r"rising.action", "climax", r"falling.action", "resolution"]
 scene_attempts = 3
 models = {"plot": "gpt-4-0314", "script": "gpt-4-0314", "evaluation": "gpt-4-0314"}
 
@@ -142,7 +143,7 @@ class Episode:
         with open(meta_path, "w") as f:
             json.dump(meta, f)
 
-    def generate(self, autoAccept=False):
+    def generate(self, interactive=False):
         # initialize the episode meta data
         def init_meta(meta):
             meta["buildComplete"] = False
@@ -156,26 +157,28 @@ class Episode:
         plot_path = os.path.join(self.work_dir, "episode-plot-response.txt")
         plot: str = None
 
+        plot_exists = os.path.exists(plot_path)
+        skip_plot_gen = not plot_exists
+
         while plot == None:
             # if the plot exists, provide an option to skip generation
-            skip_plot_gen = False
-            if os.path.exists(plot_path) and (
-                autoAccept
-                or ask(
-                    "A plot for this episode already exists would you like to skip plot generation?"
+            if plot_exists and (
+                interactive
+                and ask(
+                    "A plot for this episode already exists. Would you like to overwrite it?"
                 )
             ):
-                skip_plot_gen = True
+                skip_plot_gen = False
 
             # get or generate plot
-            if skip_plot_gen:
+            if skip_plot_gen and plot_exists:
                 with open(plot_path, "r") as f:
                     plot = f.read()
             else:
                 plot = self._generate_plot()
 
             # ask for plot confirmation
-            if not autoAccept:
+            if interactive:
                 print(plot)
                 if not ask("Do you want to continue using this plot?"):
                     plot = None
@@ -187,7 +190,7 @@ class Episode:
             scene_plots.append(
                 re.search(
                     re.compile(
-                        r"" + beats[step] + r"(?: *: *| *- *)(.+?)\s*(?:\n|$)",
+                        r"\s*" + beats[step] + r"(?:\s*:\s*|\s*-\s*)(.+?)\s*(?:\n|$)",
                         re.IGNORECASE,
                     ),
                     plot,
@@ -213,7 +216,7 @@ class Episode:
                             episode_plot=plot,
                             scene_plot=scene_plot,
                             prev_scene=prev_script_summary,
-                            autoAccept=autoAccept,
+                            interactive=interactive,
                         )
                         scripts.append(script)
 
@@ -269,7 +272,7 @@ class Episode:
             messages=messages,
             file_key="episode-plot",
             model=models["plot"],
-            temperature=1.18,
+            temperature=1.2,
         )
 
     def _generate_script(
@@ -278,25 +281,30 @@ class Episode:
         episode_plot,
         scene_plot: str,
         prev_scene: str = None,
-        autoAccept=False,
+        interactive=False,
     ):
         print(f"generating script for scene {scene_id}")
 
         output: str = None
-        skip: bool = False
 
         script_path = os.path.join(
             paths.scenes_dir, f"{self.id}/scene-{scene_id}-script-response.txt"
         )
-        if os.path.exists(script_path):
-            if autoAccept or ask(
-                f"A script for scene {scene_id} already exists would you like to skip generation for this scene?"
-            ):
-                skip = True
-                with open(script_path, "r") as f:
-                    output = f.read()
+        script_exists = os.path.exists(script_path)
+        skip: bool = not script_exists
 
-        if not skip:
+        if (
+            script_exists
+            and interactive
+            and ask(
+                f"A script for scene {scene_id} already exists. Would you like to overwrite it?"
+            )
+        ):
+            skip = False
+            with open(script_path, "r") as f:
+                output = f.read()
+
+        if not script_exists or not skip:
             messages = [
                 {"role": "system", "content": get_prompt("context")},
                 {"role": "system", "content": get_prompt("description")},
@@ -328,7 +336,7 @@ class Episode:
                 messages=messages,
                 file_key=f"scene-{scene_id}-script",
                 model=models["script"],
-                temperature=1.1,
+                temperature=0.75,
             )
 
         # extract summary
@@ -422,6 +430,8 @@ class Episode:
         # save status and mark as complete
         def update_build_status(meta):
             meta["buildComplete"] = True
+            meta["isMocked"] = mock
+            meta["timeCompleted"] = datetime.now().isoformat()
             return meta
 
         self._update_meta(update_build_status)

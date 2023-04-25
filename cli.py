@@ -6,7 +6,11 @@ from tts import tts
 
 parser = argparse.ArgumentParser(description="Echo a string")
 parser.add_argument(
-    "-y", "--yes", action="store_true", default=False, help="auto accept all"
+    "-i",
+    "--interactive",
+    action="store_true",
+    default=False,
+    help="interactive generation",
 )
 
 subparsers = parser.add_subparsers(
@@ -22,6 +26,7 @@ run_parser.add_argument(
     default=0,
     help="amount of episodes to generate, leave blank for infinite",
 )
+run_parser.add_argument("--mock", action="store_true", help="use fake narakeet sounds")
 
 episode_parser = subparsers.add_parser("episode")
 episode_subparsers = episode_parser.add_subparsers(
@@ -55,8 +60,8 @@ if args.subcommand == "run":
     runs = 0
     while True:
         episode = Episode()
-        episode.generate(autoAccept=True)
-        episode.build()
+        episode.generate(interactive=False)
+        episode.build(mock=args.mock)
 
         # quit after n episodes if number arg given
         runs += 1
@@ -68,7 +73,7 @@ if args.subcommand == "episode":
         episode_id = args.episode_id
 
         episode = Episode(episode_id)
-        episode.generate()
+        episode.generate(interactive=args.interactive)
 
     elif args.episode_command == "evaluate":
         episode_id = args.episode_id
