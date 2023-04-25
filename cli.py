@@ -39,6 +39,9 @@ generate_parser = episode_subparsers.add_parser(
 generate_parser.add_argument(
     "episode_id", type=str, help="the id of the episode", nargs="?", default=None
 )
+generate_parser.add_argument(
+    "-i", "--interactive", action="store_true", help="force rebuild"
+)
 
 evaluate_parser = episode_subparsers.add_parser("evaluate", help="evaluate an episode")
 evaluate_parser.add_argument("episode_id", type=str, help="the id of the episode")
@@ -50,6 +53,7 @@ build_parser.add_argument("episode_id", type=str, help="the id of the episode")
 build_parser.add_argument(
     "--mock", action="store_true", help="use fake narakeet sounds"
 )
+build_parser.add_argument("-f", "--force", action="store_true", help="force rebuild")
 
 
 # Parse the command line arguments
@@ -91,4 +95,4 @@ if args.subcommand == "episode":
             raise Exception("scene not found, check the scenes folder")
 
         episode = Episode(episode_id)
-        episode.build(mock=args.mock)
+        episode.build(mock=args.mock, force=args.force)

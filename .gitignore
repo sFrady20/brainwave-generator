@@ -1,4 +1,3 @@
 keys.py
-scenes/*
 !scenes/.gitkeep
 __pycache__

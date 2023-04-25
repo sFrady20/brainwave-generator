@@ -7,6 +7,8 @@ import json
 from tts import tts
 from keys import open_ai_api_key
 from datetime import datetime
+import hmac
+from hashlib import sha256
 
 version = "0.0.1-alpha.1"
 beats = ["exposition", r"rising.action", "climax", r"falling.action", "resolution"]
@@ -109,6 +111,7 @@ class Episode:
                     [f"== {item['role']} ==\n{item['content']}" for item in messages]
                 ),
             )
+            print(f"querying GPT({model}) -> {file_key}")
 
         response = requests.post(
             "https://api.openai.com/v1/chat/completions",
@@ -153,35 +156,23 @@ class Episode:
 
         self._update_meta(init_meta)
 
-        # find the plot
-        plot_path = os.path.join(self.work_dir, "episode-plot-response.txt")
+        # create the plot
         plot: str = None
-
-        plot_exists = os.path.exists(plot_path)
-        skip_plot_gen = not plot_exists
-
+        i = 0
         while plot == None:
-            # if the plot exists, provide an option to skip generation
-            if plot_exists and (
-                interactive
-                and ask(
-                    "A plot for this episode already exists. Would you like to overwrite it?"
-                )
-            ):
-                skip_plot_gen = False
-
-            # get or generate plot
-            if skip_plot_gen and plot_exists:
-                with open(plot_path, "r") as f:
-                    plot = f.read()
-            else:
-                plot = self._generate_plot()
+            plot = self._generate_plot(interactive=interactive)
 
             # ask for plot confirmation
             if interactive:
                 print(plot)
                 if not ask("Do you want to continue using this plot?"):
                     plot = None
+
+            # overflow protection for not interactive generation
+            if not interactive:
+                i += 1
+                if i > 10:
+                    raise Exception("Error creating plot - overflow error")
 
         # get scene plots
         scene_plots = []
@@ -245,35 +236,45 @@ class Episode:
 
         print(f"📺 Episode {self.id} generated")
 
-    def _generate_plot(self, autoAccept=False):
+    def _generate_plot(self, interactive=False):
         print(f"generating episode {self.id}")
 
         plot_path = os.path.join(
             paths.scenes_dir, f"{self.id}/episode-plot-response.txt"
         )
-        if os.path.exists(plot_path):
-            if autoAccept or ask(
-                "A plot for this episode already exists would you like to skip plot generation?"
-            ):
-                with open(plot_path, "r") as f:
-                    return f.read()
 
-        # define prompt messages
-        messages = [
-            {"role": "system", "content": get_prompt("context")},
-            {"role": "system", "content": get_prompt("description")},
-            {"role": "system", "content": get_prompt("characters")},
-            {"role": "system", "content": get_prompt("shots")},
-            {"role": "user", "content": get_prompt("plot")},
-        ]
+        plot_exists = os.path.exists(plot_path)
+        skip = plot_exists
 
-        # make call to chatgpt
-        return self._gpt(
-            messages=messages,
-            file_key="episode-plot",
-            model=models["plot"],
-            temperature=1.2,
-        )
+        if (
+            plot_exists
+            and interactive
+            and ask(
+                "A plot for this episode already exists. Would you like to overwrite it?"
+            )
+        ):
+            skip = False
+
+        if plot_exists and skip:
+            with open(plot_path, "r") as f:
+                return f.read()
+        else:
+            # define prompt messages
+            messages = [
+                {"role": "system", "content": get_prompt("context")},
+                {"role": "system", "content": get_prompt("description")},
+                {"role": "system", "content": get_prompt("characters")},
+                {"role": "system", "content": get_prompt("shots")},
+                {"role": "user", "content": get_prompt("plot")},
+            ]
+
+            # make call to chatgpt
+            return self._gpt(
+                messages=messages,
+                file_key="episode-plot",
+                model=models["plot"],
+                temperature=1.23,
+            )
 
     def _generate_script(
         self,
@@ -291,7 +292,7 @@ class Episode:
             paths.scenes_dir, f"{self.id}/scene-{scene_id}-script-response.txt"
         )
         script_exists = os.path.exists(script_path)
-        skip: bool = not script_exists
+        skip = script_exists
 
         if (
             script_exists
@@ -301,10 +302,11 @@ class Episode:
             )
         ):
             skip = False
+
+        if script_exists and skip:
             with open(script_path, "r") as f:
                 output = f.read()
-
-        if not script_exists or not skip:
+        else:
             messages = [
                 {"role": "system", "content": get_prompt("context")},
                 {"role": "system", "content": get_prompt("description")},
@@ -336,11 +338,11 @@ class Episode:
                 messages=messages,
                 file_key=f"scene-{scene_id}-script",
                 model=models["script"],
-                temperature=0.75,
+                temperature=0.85,
             )
 
         # extract summary
-        match = re.compile(r"\n.{4}== ?", re.IGNORECASE).search(output)
+        match = re.compile(r"\n== ?", re.IGNORECASE).search(output)
         if not match:
             raise Exception("There was an error parsing the summary")
 
@@ -385,17 +387,15 @@ class Episode:
         lines = episode_script.splitlines()
 
         # build sfx using narakeet
-        for line in lines:
+        for i, line in enumerate(lines):
             matches = re.search(
-                re.compile(r"^(.{4}):: *(.+?) *: *(.+?) *: *(.+?) *$", re.IGNORECASE),
+                re.compile(r"^:: *(.+?) *: *(.+?) *: *(.+?) *$", re.IGNORECASE),
                 line,
             )
 
             if bool(matches):
-                line_id = matches.group(1)
-
                 if not force and os.path.exists(
-                    os.path.join(self.sfx_dir, f"dialog-{line_id}.mp3")
+                    os.path.join(self.sfx_dir, f"dialog-{i}.mp3")
                 ):
                     continue
 
@@ -405,25 +405,26 @@ class Episode:
                     for pattern in character["patterns"]:
                         if bool(
                             re.search(
-                                re.compile(pattern, re.IGNORECASE), matches.group(2)
+                                re.compile(pattern, re.IGNORECASE), matches.group(1)
                             )
                         ):
                             speaker = character
                             break
                 if not speaker:
-                    print(f"character not found '{matches.group(2)}'")
+                    print(f"character not found '{matches.group(1)}'")
                     continue
 
                 voice = speaker["voice"]
-                dialog = matches.group(4)
+                dialog = matches.group(3)
 
                 dialog = re.sub(r"\(.+?\)", "", dialog)  # remove parentheses
+                dialog = re.sub(r"\*.+?\*", "", dialog)  # remove actions
 
-                print(f"processing line {line_id} with voice '{voice}' - {dialog}")
+                print(f"processing line {i} with voice '{voice}' - {dialog}")
                 tts(
                     dialog,
                     voice,
-                    os.path.join(self.sfx_dir, f"dialog-{line_id}.mp3"),
+                    os.path.join(self.sfx_dir, f"dialog-{i}.mp3"),
                     mock=mock,
                 )
 
