@@ -6,8 +6,8 @@ import re
 import json
 from tts import tts
 from keys import open_ai_api_key
-from datetime import datetime
 
+version = "0.0.1-alpha.1"
 beats = ["exposition", "rising action", "climax", "falling action", "resolution"]
 scene_attempts = 3
 models = {"plot": "gpt-4-0314", "script": "gpt-4-0314", "evaluation": "gpt-4-0314"}
@@ -147,6 +147,7 @@ class Episode:
         def init_meta(meta):
             meta["buildComplete"] = False
             meta["rating"] = 5
+            meta["version"] = version
             return meta
 
         self._update_meta(init_meta)
@@ -186,7 +187,7 @@ class Episode:
             scene_plots.append(
                 re.search(
                     re.compile(
-                        r"" + beats[step] + r"(?:\s*:\s*|\s*-\s*)(.+?)\s*(?:\n|$)",
+                        r"" + beats[step] + r"(?: *: *| *- *)(.+?)\s*(?:\n|$)",
                         re.IGNORECASE,
                     ),
                     plot,
@@ -268,7 +269,7 @@ class Episode:
             messages=messages,
             file_key="episode-plot",
             model=models["plot"],
-            temperature=1.15,
+            temperature=1.18,
         )
 
     def _generate_script(
@@ -299,9 +300,9 @@ class Episode:
             messages = [
                 {"role": "system", "content": get_prompt("context")},
                 {"role": "system", "content": get_prompt("description")},
+                {"role": "system", "content": get_prompt("wavelang")},
                 {"role": "system", "content": get_prompt("characters")},
                 {"role": "system", "content": get_prompt("shots")},
-                {"role": "system", "content": get_prompt("transitions")},
                 {
                     "role": "system",
                     "content": f"For reference, here is the plot of the entire episode:\n{episode_plot}",
@@ -331,7 +332,7 @@ class Episode:
             )
 
         # extract summary
-        match = re.compile(r"==summary==", re.IGNORECASE).search(output)
+        match = re.compile(r"\n.{4}== ?", re.IGNORECASE).search(output)
         if not match:
             raise Exception("There was an error parsing the summary")
 
@@ -376,44 +377,45 @@ class Episode:
         lines = episode_script.splitlines()
 
         # build sfx using narakeet
-        for line_number, line in enumerate(lines):
-            if not force and os.path.exists(
-                os.path.join(self.sfx_dir, f"dialog-{line_number}.mp3")
-            ):
-                continue
-
+        for line in lines:
             matches = re.search(
-                re.compile(r"^(.+?)\:\s*\((.+?)\)\s*(.+)$", re.IGNORECASE), line
+                re.compile(r"^(.{4}):: *(.+?) *: *(.+?) *: *(.+?) *$", re.IGNORECASE),
+                line,
             )
 
             if bool(matches):
-                speaker = None
+                line_id = matches.group(1)
+
+                if not force and os.path.exists(
+                    os.path.join(self.sfx_dir, f"dialog-{line_id}.mp3")
+                ):
+                    continue
 
                 # find character
+                speaker = None
                 for character in character_map:
                     for pattern in character["patterns"]:
                         if bool(
                             re.search(
-                                re.compile(pattern, re.IGNORECASE), matches.group(1)
+                                re.compile(pattern, re.IGNORECASE), matches.group(2)
                             )
                         ):
                             speaker = character
                             break
-
                 if not speaker:
-                    print(f"character not found '{matches.group(1)}'")
+                    print(f"character not found '{matches.group(2)}'")
                     continue
 
                 voice = speaker["voice"]
-                dialog = matches.group(3)
+                dialog = matches.group(4)
 
                 dialog = re.sub(r"\(.+?\)", "", dialog)  # remove parentheses
 
-                print(f"processing line {line_number} with voice '{voice}' - {dialog}")
+                print(f"processing line {line_id} with voice '{voice}' - {dialog}")
                 tts(
                     dialog,
                     voice,
-                    os.path.join(self.sfx_dir, f"dialog-{line_number}.mp3"),
+                    os.path.join(self.sfx_dir, f"dialog-{line_id}.mp3"),
                     mock=mock,
                 )
 
