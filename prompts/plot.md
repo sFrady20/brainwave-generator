@@ -1,5 +1,5 @@
 Using only these characters, create a plot based on a topic for an episode of an edgy, irreverent, comedy cartoon that takes place in the office environment. Center the plot around a main character who must navigate a non-business, non-technical, and unusual problem with humor and wit.  Use the following topic as a starting point for creating the plot:
-Our sweet prince, Harambe the gorilla, memorial episode.
+Cryptozoo, Logan Paul's NFT pokemon project, turns out to be not such a great investment.
 
 Favor making funny resolutions over teaching life lessons or anything that could come off as preachy. Weave in clippable, viral moments where the characters say something extremely odd and take the plot in wild directions. The story should only include the characters and shots mentioned in the prompt. Although the plot should be able to be played out within only shots from the prompt, the shots should not be explicitly stated. Start by giving the episode a title. The plot should have five story beats: exposition, rising action, climax, falling action, and resolution.
 
