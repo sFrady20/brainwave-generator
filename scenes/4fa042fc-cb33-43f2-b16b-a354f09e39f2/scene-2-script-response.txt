@@ -1,0 +1,20 @@
+>> [21] > 2/2 - Samantha, Michael
+:: Samantha : perplexed : Mike, I found some security footage from last night. It looks like Marcus is the one who wrecked Art's chair. He was carrying some metal yarn ball sculpture, in the dark of all things!
+:: Michael : chuckling : That's classic Marcus for you, mate. The bloke can't resist turning this office into a weird art gallery every chance he gets. Must've been trying to surprise us all with another Monartaville masterpiece. 
+
+>> [12] > 2/2 - Samantha, Marcus
+:: Samantha : stern : Marcus, we need to talk. I found the security footage from last night, and it looks like you accidentally destroyed Art's chair while moving your metal yarn ball sculpture. What were you thinking?
+:: Marcus : embarrassed : Oh dear, I was hoping nobody would find out. I didn't mean to ruin Art's chair! I was just trying to create a whimsical art installation to brighten up the office. You know, an unexpected surprise for everyone!
+
+>> [13] > 3/3 - Samantha, Marcus, Carmen
+:: Carmen : teasing : Well, Marcus, you certainly gave Art an unexpected surprise, just not the one you intended! So, what's your plan to fix this mess? 
+:: Marcus : unsure : Honestly, I don't know! Art loves that chair, and I can't imagine how I can make it up to him.
+:: Samantha : determined : Listen, we'll band together and figure this out. We'll help you make things right with Art. But please, no more surprise art in the dark, okay?
+
+>> [11] > 4/4 - Samantha, Marcus, Carmen, David
+:: David : grinning : I have an idea. What if we secretly piece together a new chair for Art made from our lunchbox leftovers? It's quirky, it's odd, just like us – the perfect tribute!
+:: Carmen : laughing : I love it! Art will be thrilled with a chair made of organic lunchbox innards. It's so… Oddball Industries!
+:: Samantha : rolling her eyes : Alright, let's do it. But we need to keep it a secret until we're ready to present it. No more office rumors or betting, agreed?
+:: Marcus : grateful : Agreed! Thank you all for helping me out. I promise, no more art installations in the dark. From now on, it's daytime art only!
+
+== In this act, Samantha discovers security footage implicating Marcus in the chair catastrophe, but it turns out to have been a nearsighted attempt at art installation based on their version of Monartaville. Marcus is embarrassed and unsure how to fix the situation, but the team comes together to help. They decide to build a new chair for Art made of organic lunchbox innards as a quirky tribute to their boss.
