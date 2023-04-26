@@ -1,0 +1,18 @@
+>> [1] > 3/4 - Rachel, Art, Nia
+:: Rachel : eavesdropping : What's that about an ancient coin? Do you think it's valuable?
+:: Art : chuckling : You won't believe it, Rachel. We found this old coin behind the wall during the recent renovation. It's said to put a strange and hilarious curse on whoever possesses it. The curse is barely noticeable at first, but soon leads to peculiar mishaps and miscommunication in the office. 
+:: Nia : smirking : It's true, I've seen it happen. Art kept the coin as a memento, but didn't foresee the consequences of owning such an unusual trinket.
+:: Rachel : excited : You guys must let me in on this! I'm sure David, Liam, and Carmen would love a piece of the action. Imagine the fun we could have with a cursed coin in the office!
+
+>> [3] > 3/3 - Rachel, David, Liam
+:: Rachel : enthused : Guys, you won't believe what I overheard! Art and Nia were talking about this ancient coin that carries a hilarious curse! The coin causes all sorts of strange mishaps and miscommunication. Just imagine the chaos we could unleash with that thing!
+:: David : grinning : That sounds like a crazy adventure just waiting to happen. I'm in! We should definitely try to get our hands on that coin. You know, just for the fun of it.
+:: Liam : smirking : Count me in too. What's life without a bit of harmless mischief? Let's hatch a plan to snatch that coin.
+
+>> [18] > 3/3 - Carmen, David, Liam
+:: Carmen : curious : So, what's this about a cursed coin? Sounds like something right up my alley. Fill me in!
+:: David : excitedly : Well, Art and Nia found this ancient coin during the renovation. It supposedly carries a curse that leads to hilarious mishaps and miscommunication. We're planning to get our hands on it for a bit of fun.
+:: Liam : conspiratorially : Care to join the party, Carmen? It's bound to be a fun ride!
+:: Carmen : laughing : Oh, absolutely! Let's get that coin and kick things up a notch around here. This office needs a good jolt of excitement!
+
+== In this act, Rachel discovers the ancient cursed coin that Art and Nia found during a renovation. Intrigued by the hilarity brought by the curse, Rachel shares this juicy gossip with David, Liam, and Carmen. They all become thrilled with the idea of possessing the coin for a short period and decide to devise a plan to snatch the coin from Art's office, setting the stage for a comedic, office-wide adventure.

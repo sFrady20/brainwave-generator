@@ -1,0 +1,28 @@
+>> [15] > 4/5 - Liam, Rachel, David, Marcus
+:: Liam : excited : Gather around, everyone! It's time for the grand finale of this bizarre celebration. I've created a short video showcasing our possible AI overlords taking over our jobs here at Oddball Industries! Prepare for a rollercoaster of emotions and a whole lot of absurdity!
+:: Rachel : amused : I can't wait to see this, Liam! I'm sure it'll be hilarious, though it might make me second-guess my job security. Is it too late to invest in learning computer programming?
+:: David : chuckling : Well, Rachel, you know what they say - laugh now, or forever hold your peace! Let's enjoy this wild ride that Liam's put together for us!
+:: Marcus : smirking : Liam, my friend, you truly have a knack for embracing the madness that is Singularity Day. Let's get this show on the road!
+
+>> [8] > 3/3 - Devika, Marko, Carmen
+:: Devika : curious : Hey Marko, I heard Liam's got a special video prepared for the party. I wonder what crazy ideas he's come up with this time.
+:: Marko : grinning : Oh, trust me, Devika, it's going to be a hoot! I had a sneak peek, and let's just say it's going to make everyone rethink their career choices. 
+:: Carmen : jokingly : I don't know about you guys, but I'm just here for the free drinks and the robot dance-off! But hey, a little AI-themed comedy can't hurt, right?
+
+>> [15] > 5/5 - Liam, Rachel, David, Marcus, Sam
+:: Liam : presenting : And here we have, for your viewing pleasure and existential dread, our potential AI overlords in action! Enjoy the show, folks!
+:: Rachel : laughing : Oh my gosh, Liam! You really outdid yourself with this one. It's hilarious and terrifying all at once!
+:: David : chuckling : I never thought I'd see the day when Marcus's job would be replaced by a robot with a sense of humor to rival his own!
+:: Marcus : feigning offense : Excuse me, David, but I think I've got a few more years before they can build a machine with my level of wit and charm! 
+:: Sam : reluctantly smiling : Okay, okay, I'll admit it, this is pretty darn funny. But it's also making me consider adding some cyber-security to my job description, just in case.
+
+>> [17] > 2/2 - Devika, Marko
+:: Devika : puzzled : Oh no, the video just froze. Hang on, let me check the printer real quick. That's weird, it stopped too... What are the odds?
+:: Marko : suspicious : Hmm, that is pretty strange. I mean, it could be a coincidence, but something about it just feels... off. You don't think we've jinxed ourselves with all this Singularity Day stuff, do you?
+
+>> [18] > 3/3 - Carmen, Nia, Rachel
+:: Carmen : nervously : So, uh, did anyone else notice that the video glitched out right as the printer stopped working? Am I the only one feeling a little creeped out by the timing?
+:: Nia : uncertain : You know, Carmen, I didn't want to say anything, but it does seem a little too perfect. We've been laughing at these AI scenarios all day, but what if there's a tiny hint of truth to it all?
+:: Rachel : dismissive : Come on, you two, don't let the paranoia get the best of you. It's just a funny coincidence. Let's get back to enjoying the party and eating some more of these delicious robot-shaped cookies!
+
+== In this act, Liam presents a humorous short video during the Singularity Day party that comically explores scenarios of AI taking over employees' roles in the company. The video clips get halted midway due to technical glitches, which coincides with the printer stopping abruptly as Devika passes by. This generates paranoia among the employees like Carmen and Nia, who begin nervously laughing and discussing conspiracy theories. Despite the strange occurrences, Rachel tries to keep everyone's spirits up and encourages them to enjoy the remaining festivities.
