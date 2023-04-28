@@ -321,7 +321,7 @@ class Episode:
                     [
                         {
                             "role": "system",
-                            "content": f"This is the summary of the previous scene script. Use it for context and to recall important events and information:\n{prev_scene}",
+                            "content": get_prompt("blend").replace("((SCENE))", prev_scene),
                         }
                     ]
                     if prev_scene is not None

@@ -1,0 +1,24 @@
+>> [19] > 1/3 - Art
+:: Art : puzzled : What on earth is this? An envelope under my door? Let's see here... "To the one who seeks the unknown, the treasure you'll find is tied to the magic word from Pluto Nash." What kind of cryptic nonsense is this?
+
+>> [22] > 2/3 - Nia, Art
+:: Nia : curious : Hey Art, what's all the hush-hush about? You seem a bit flustered.
+:: Art : hesitantly : Well, Nia, I received this mysterious envelope with a riddle hinting at some hidden treasure. It's tied to a keyword from the movie "Pluto Nash".
+:: Nia : smirking : Seriously? That movie was a flop! But I'm intrigued, boss. Do you need help decoding this riddle? 
+
+>> [12] > 1/2 - Marcus
+:: Marcus : chuckling : Oh, what do we have here? A treasure tied to Pluto Nash? The absurdity of it all! This is going to be a fun day!
+
+>> [3] > 2/3 - David, Marcus
+:: David : cautiously : Hey Marcus, I overheard something about a treasure riddle? What's the deal? 
+:: Marcus : dramatically : Ah, my good friend! Gather 'round and let me regale you with the tale of the cryptic riddle and the hidden treasure that lies in wait, tied to a most peculiar film of yesteryear!
+
+>> [7] > 1/2 - Devika
+:: Devika : pondering : Pluto Nash, huh? Sounds like a wild goose chase. But hidden treasures are always fun. I wonder what this mysterious riddle is all about...
+
+>> [22] > 3/3 - Art, Nia, David
+:: Art : conspiratorially : Alright team, let's get to work on deciphering this riddle. And let's keep this on the down-low; we don't want the whole office chasing after this wild goose.
+:: Nia : determined : Agreed. We don't need more chaos than we already have. Let's just focus on solving the riddle and see where it leads us.
+:: David : excitedly : I'm in! Who knows, maybe this treasure will be our ticket to early retirement and endless margaritas on the beach! Or at least a good laugh.
+
+== This act begins with Art receiving a mysterious envelope containing a cryptic riddle tied to the movie "Pluto Nash". As the word spreads around the office, Art decides to keep the treasure hunt limited to a select few - Nia, David, Marcus, and Devika. They all agree to work together to decipher the riddle and find the hidden treasure, while keeping the rest of the office in the dark.

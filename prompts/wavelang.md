@@ -13,7 +13,7 @@ A transition signifies a fade-to-black transition the end of a scene and a compl
 >> [#] > # of characters / # max characters - name, name, name
 ```
 
-After the last scene write a short summary of the events, conclusion, and any important information from the created scenes to pass on to the next act. This should include specific information needed to preserve continuity between the acts. Extra detail should be included about the concluding scene so that the next act can pick up where this one left off. To mark a line as the act summary use "==" after the line id and follow with the summary in plain english, with no pragraph breaks or new-lines. For example:
+After the last scene write a short detailed log of the events, conclusion, and any important information from the created scenes to pass on to the next act. This should include very specific information needed to preserve continuity between the acts. Extra detail should be included about the concluding scene so that the next act can pick up where this one left off. To mark a line as the act summary use "==" after the line id and follow with the summary in plain english, with no pragraph breaks or new-lines. For example:
 ```
 == plain english summary of scenes
 ```

@@ -1,0 +1,17 @@
+>> [20] > 4/6 - Art, Nia, David, Devika
+:: Art : excited : Alright, team. I've gathered you here in the party room to discuss a matter of utmost importance. It might just be the key to a hidden treasure. I need your help to decipher this cryptic riddle from "Pluto Nash." 
+:: Nia : smirking : Art, when you say "hidden treasure," are we talking about actual riches or just another one of your half-baked schemes for making a quick buck?
+:: David : chuckling : Yeah, and besides, "Pluto Nash" is a bit of a deep cut, isn't it? I mean, really, what's next, "Gigli?"
+:: Devika : intrigued : Nevertheless, I'm always up for a good puzzle. What does this riddle say exactly?
+:: Art : elated : The riddle says, "The key to fortune lies in a word, uttered in darkness by a bird." It's very cryptic, but I'm convinced we can solve it together. But let's keep this on the down-low. We don't want the entire office in on this treasure hunt.
+
+>> [2] > 2/2 - Carmen, Liam
+:: Carmen : suspicious : Have you noticed all the hush-hush meetings going on lately? I wonder what Art and the gang are up to.
+:: Liam : smug : I bet it's corporate sabotage or something equally nefarious. You know Art, always looking for ways to make a quick buck. 
+
+>> [18] > 3/3 - Marcus, Rachel, David
+:: Marcus : inquisitive : David, buddy, do you have any idea about this "Pluto Nash" treasure hunt? Or is it just another one of Art's ill-conceived schemes?
+:: Rachel : curious : Yeah, word around the office is there's something big going on, and we don't want to be left in the dark.
+:: David : cryptic : All I can say is that Art's got something up his sleeve, but don't get your hopes up. It could be a wild goose chase - or in our case, a wild Pluto Nash chase. 
+
+== In this act, Art enlists Nia, David, Devika, and Marcus to decode a cryptic riddle tied to the movie "Pluto Nash" for a hidden treasure. Meanwhile, curiosity reaches an all-time high among the other employees, who speculate whether it's corporate sabotage, nefarious plots, or more mundane power plays perceived as hidden treasures. The act is filled with irreverent banter, offbeat humor, and rediculous character portrayals as the characters attempt to navigate the mystery of the riddle.

@@ -1,0 +1,20 @@
+>> [6] > 2/3 - Art, Marcus
+:: Art : excited : Marcus, you won't believe what I found! A hidden passageway in the storage room that leads to a secret dive bar right under our company! It's got all the old-time charm and some really unique drinks!
+:: Marcus : surprised : Dude, that's bonkers! A secret bar? Are you certain it's not just an old maintenance closet or something? Or did you accidentally slip into a parallel universe?
+:: Art : chuckling : No, man, it's for real! The cocktails have some of the most bizarre names I've ever encountered. It's like the bartender's just making them up on the spot! I'm telling you, Marcus, it's a game changer.
+
+>> [11] > 2/4 - Art, Liam
+:: Art : ecstatic : Liam, have you heard about the secret bar I found? It's under our building! I can't believe this place has been here all this time, and we never knew about it.
+:: Liam : intrigued : A secret bar, huh? That's wild, Art! Sounds like something straight out of a cartoon or one of those ridiculous internet memes. I'm game to check it out - maybe have a drink or two, and share some of our own absurd concoctions.
+
+>> [15] > 3/5 - Art, Rachel, David
+:: Art : eager : Guys, I found the most amazing thing! There's a secret bar tucked away under our office, and it's like stepping back in time. It's wild, like some otherworldly hidden gem!
+:: Rachel : skeptical : Huh, that's interesting, Art. Are you sure it's not just a hallucination from drinking one of those questionable smoothies from the breakroom? I mean, a secret dive bar?
+:: David : amused : Yeah, Art, maybe you discovered the ancient underground lair of the legendary Office Mole People or something. Seriously though, that sounds absolutely insane. Count me in for an adventure!
+
+>> [18] > 3/3 - Art, Carmen, Nia
+:: Art : animated : Carmen, Nia, you'll never guess what I found! A secret bar right underneath our feet, with the most off-the-wall drinks and atmosphere! We should all go and unwind after work.
+:: Carmen : surprised : Woah, Art, that sounds wild! I'm always down for a secret adventure. Maybe it's a hideout for some kind of underground speakeasy society!
+:: Nia : grinning : Or maybe it's a portal to a secret society of drunken coders! I am genuinely intrigued, Art. A little downtime with the team might be just what we need to get the creative juices flowing.
+
+== In this act, Art discovers a long-forgotten passageway leading from Oddball Industries' storage room to a secret dive bar underneath the building. He excitedly shares his discovery with Marcus, Liam, Rachel, David, Carmen, and Nia. They all express their own mix of surprise, skepticism, amusement, and intrigue, with some lighthearted banter thrown around. The characters find themselves drawn to the allure of this secret place and look forward to exploring it after work.
