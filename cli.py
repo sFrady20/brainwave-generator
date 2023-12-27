@@ -2,7 +2,6 @@ import argparse
 from episode import Episode
 import os
 import paths
-from tts import tts
 
 parser = argparse.ArgumentParser(description="Echo a string")
 parser.add_argument(

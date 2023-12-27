@@ -7,13 +7,11 @@ import json
 from tts import tts
 from keys import open_ai_api_key
 from datetime import datetime
-import hmac
-from hashlib import sha256
 
 version = "0.0.1-alpha.1"
 beats = ["exposition", r"rising.action", "climax", r"falling.action", "resolution"]
 scene_attempts = 3
-models = {"plot": "gpt-4-0314", "script": "gpt-4-0314", "evaluation": "gpt-4-0314"}
+models = {"plot": "gpt-4-1106-preview", "script": "gpt-4-1106-preview", "evaluation": "gpt-4-1106-preview"}
 
 character_map = [
     {
