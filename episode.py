@@ -271,7 +271,7 @@ class Episode:
                 messages=messages,
                 file_key="episode-plot",
                 model=models["plot"],
-                temperature=1.23,
+                temperature=1.07,
             )
 
     def _generate_script(
@@ -336,7 +336,7 @@ class Episode:
                 messages=messages,
                 file_key=f"scene-{scene_id}-script",
                 model=models["script"],
-                temperature=0.85,
+                temperature=0.9,
             )
 
         # extract summary
