@@ -1,2 +1,0 @@
-This is the summary of the previous scene script. Write the new script starting from after these events with no overlap. Also, use it for context and to recall important events and information:
-((SCENE))

@@ -1,0 +1,147 @@
+# Shot definitions for Unity scenes
+# Each shot has a maximum character count and optional gender restrictions
+
+shots:
+  - id: 1
+    description: >-
+      Rachel sitting at the receptionist desk while characters are standing on the
+      far side of the desk having a discussion.
+    max_characters: 4
+    gender_restriction: null
+
+  - id: 2
+    description: Two characters chatting at the water cooler.
+    max_characters: 2
+    gender_restriction: null
+
+  - id: 3
+    description: >-
+      David working at his desk in his cubicle, optionally someone behind him
+      having a chat.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 4
+    description: >-
+      Female characters standing at the sinks in the womens bathroom, chatting
+      before they get back to work.
+    max_characters: 3
+    gender_restriction: female
+
+  - id: 5
+    description: Characters in a moving elevator, discussing something.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 6
+    description: >-
+      Characters having a secret conversation in the back storage room surrounded
+      by filing cabinets and storage boxes.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 7
+    description: >-
+      Devika hard at work in her secluded corner cubicle in the media room.
+      Optionally, another character is trying to speak with her.
+    max_characters: 2
+    gender_restriction: null
+
+  - id: 8
+    description: >-
+      Marko at his computer in the media room, chatting with up to 2 other
+      colleagues.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 9
+    description: >-
+      Male characters standing at the sinks in the mens bathroom, chatting
+      before they get back to work.
+    max_characters: 3
+    gender_restriction: male
+
+  - id: 10
+    description: >-
+      A character operating a camera in front of a green screen while one or
+      two characters speak into the camera while sitting.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 11
+    description: >-
+      A medium shot of the lunch kitchen where up to 5 characters are preparing
+      food and conversing.
+    max_characters: 5
+    gender_restriction: null
+
+  - id: 12
+    description: >-
+      Marcus sitting at his desk in a cubicle while, optionally, another
+      character speaks to him.
+    max_characters: 2
+    gender_restriction: null
+
+  - id: 13
+    description: >-
+      Carmen sitting at her desk in a cubicle while, optionally, other
+      characters speak to her.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 14
+    description: >-
+      Liam sitting in his cubicle, optionally speaking to another character.
+    max_characters: 2
+    gender_restriction: null
+
+  - id: 15
+    description: >-
+      A group of characters gathered in the private break room, talking over
+      donuts and coffee.
+    max_characters: 5
+    gender_restriction: null
+
+  - id: 16
+    description: >-
+      A character giving a presentation in the conference room with other
+      characters at the table.
+    max_characters: 8
+    gender_restriction: null
+
+  - id: 17
+    description: >-
+      Characters standing by the printer, chatting as they wait for their
+      documents.
+    max_characters: 2
+    gender_restriction: null
+
+  - id: 18
+    description: >-
+      A group of characters chatting in the hallway, near the elevator.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 19
+    description: >-
+      Art behind his executive desk in his office speaking with other
+      characters.
+    max_characters: 3
+    gender_restriction: null
+
+  - id: 20
+    description: >-
+      Characters in the office party room, having a chat around a pool table.
+    max_characters: 6
+    gender_restriction: null
+
+  - id: 21
+    description: Characters in the security office conducting official business.
+    max_characters: 2
+    gender_restriction: null
+
+  - id: 22
+    description: >-
+      1 or 2 characters in Nia's office talking to Nia across her desk.
+    max_characters: 3
+    gender_restriction: null

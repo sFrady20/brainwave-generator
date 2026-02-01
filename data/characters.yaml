@@ -1,0 +1,191 @@
+# Character definitions for Oddball Industries
+# Each character has patterns for name matching and voice mappings per TTS provider
+
+characters:
+  - id: Art
+    full_name: Arthur "Art" Beecham
+    description: >-
+      The founder and CEO of Oddballs Industries. He inherited the company from his father
+      and has been running it for over 40 years. Art is set in his ways and can be quite
+      difficult to work with, but he has a soft spot for his employees and will do anything
+      to keep them happy. He has a tendency to fall asleep during important meetings.
+    gender: male
+    patterns:
+      - "arthur"
+      - "(?:^|\\s|\")art(?:$|\\s|\")"
+      - "beecham"
+    voice_mappings:
+      openai: onyx
+      elevenlabs: ""  # Add ElevenLabs voice ID
+      mock: Rodney
+
+  - id: Nia
+    full_name: Nia Jones
+    description: >-
+      Nia Jones worked her way up the ranks at Oddball Industries, starting as a marketing
+      intern straight out of college. Her talent for strategic thinking and her ability to
+      connect with customers quickly made her a rising star. She's now Vice President,
+      overseeing marketing, operations and customer service. Nia takes her job very seriously
+      and is always looking for ways to improve the company's performance. She's a firm but
+      fair boss. Outside of work, Nia is a fitness enthusiast who enjoys running. She has a
+      habit of trying to use business jargon in everyday conversations, throwing out phrases
+      like "let's circle back" or "touch base" during casual conversations.
+    gender: female
+    patterns:
+      - "(?:^|\\s|\")nia(?:$|\\s|\")"
+      - "(?:^|\\s|\")jones(?:$|\\s|\")"
+    voice_mappings:
+      openai: nova
+      elevenlabs: ""
+      mock: Karen
+
+  - id: Liam
+    full_name: Liam O'Connell
+    description: >-
+      The Director of Sales. Liam is a bit of a hotshot and knows it. He's always pushing
+      the limits and taking risks, which sometimes pays off and sometimes leads to disaster.
+      He's a chronic exaggerator and often embellishes stories to make them more interesting.
+    gender: male
+    patterns:
+      - "(?:^|\\s|\")liam(?:$|\\s|\")"
+      - "o.connell"
+    voice_mappings:
+      openai: echo
+      elevenlabs: ""
+      mock: Cillian
+
+  - id: Carmen
+    full_name: Carmen Vega
+    description: >-
+      Carmen Vega is the Director of Operations at Oddball Industries. Carmen is a perpetually
+      late, coffee-addicted social butterfly. Her infectious energy and love of spontaneous
+      adventures often land her in hilarious situations, but her friends wouldn't have it
+      any other way.
+    gender: female
+    patterns:
+      - "carmen"
+      - "vega"
+      - "rodriguez"
+    voice_mappings:
+      openai: nova
+      elevenlabs: ""
+      mock: Mia
+
+  - id: Marcus
+    full_name: Marcus Okonkwo
+    description: >-
+      Marcus Okonkwo is a flashy Nigerian man with a larger-than-life personality. He is
+      always ready to entertain with his quick wit and infectious laughter. Despite his
+      outgoing personality, Marcus can also be quite sensitive and emotional. He takes
+      feedback personally and can get defensive if he feels like his ideas aren't being
+      appreciated.
+    gender: male
+    patterns:
+      - "marcus"
+      - "okonkwo"
+    voice_mappings:
+      openai: onyx
+      elevenlabs: ""
+      mock: Obinna
+
+  - id: Dave
+    full_name: David "Dave" Kent
+    description: >-
+      The project manager. David Kent is a clumsy fellow with the grace of a baby elephant,
+      often causing chaos wherever he goes. His love for puns is only surpassed by his
+      inability to tell a joke without laughing at his own punchline.
+    gender: male
+    patterns:
+      - "dave"
+      - "david"
+      - "kent"
+    voice_mappings:
+      openai: fable
+      elevenlabs: ""
+      mock: Tom
+
+  - id: Rachel
+    full_name: Rachel Johnson
+    description: >-
+      Rachel is a recent college grad who landed the job as receptionist at Oddball
+      Industries. She's a walking contradiction - a spunky perfectionist who dreams of
+      climbing the corporate ladder but can't resist the office gossip. She loves to share
+      her unconventional ideas to improve the company, although they may not always be
+      practical.
+    gender: female
+    patterns:
+      - "rachel"
+      - "johnson"
+    voice_mappings:
+      openai: shimmer
+      elevenlabs: ""
+      mock: Lisa
+
+  - id: Devika
+    full_name: Devika Sharma
+    description: >-
+      The lead developer. Devika is a bit of a free spirit and likes to think outside
+      the box. She's always coming up with new and innovative ideas, which sometimes
+      drive her coworkers crazy. She's a bit of a scatterbrain and often forgets
+      important details.
+    gender: female
+    patterns:
+      - "devika"
+      - "sharma"
+      - "aisha"
+      - "patel"
+    voice_mappings:
+      openai: shimmer
+      elevenlabs: ""
+      mock: Shilpa
+
+  - id: Marko
+    full_name: Marko Russo
+    description: >-
+      Marko is an easygoing Aussie larrikin who loves nothing more than a good laugh
+      with his mates. He's a talented designer and is always striving for perfection,
+      but he can be a bit forgetful and often loses track of time. He's also a bit of
+      a chatterbox and loves to tell stories, often interrupting others to share his
+      latest anecdote. Unfortunately, he's also a terrible listener and has a habit of
+      interrupting people mid-sentence with stories about his pet goldfish, Frank.
+    gender: male
+    patterns:
+      - "marko"
+      - "russo"
+    voice_mappings:
+      openai: echo
+      elevenlabs: ""
+      mock: Bruce
+
+  - id: Sam
+    full_name: Samantha "Sam" Wilson
+    description: >-
+      The other security guard. Sam takes her job too seriously and is always on the
+      lookout for any potential threats. She's tough but fair and has no sense of humor.
+      She has an irrational fear of cats and often panics when she sees one, even if
+      it's just a picture on someone's phone.
+    gender: female
+    patterns:
+      - "(?:^|\\s|\")sam(?:$|\\s|\")"
+      - "samantha"
+      - "wilson"
+    voice_mappings:
+      openai: alloy
+      elevenlabs: ""
+      mock: Jodie
+
+  - id: Mike
+    full_name: Michael "Mike" Jackson
+    description: >-
+      The head of security. Mike is a bit of a goofball and likes to joke around. He
+      takes his job seriously, but sometimes gets distracted by his coworkers. He's
+      easily distracted and often forgets what he's supposed to be doing.
+    gender: male
+    patterns:
+      - "mike"
+      - "michael"
+      - "jackson"
+    voice_mappings:
+      openai: fable
+      elevenlabs: ""
+      mock: Ronald

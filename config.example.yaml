@@ -1,0 +1,38 @@
+# Brainwave Configuration
+# Copy this file to config.yaml and adjust settings as needed.
+
+llm:
+  # LLM provider: openai, anthropic, azure
+  provider: openai
+  # Model to use for generation
+  model: gpt-4o
+  # Temperature for generation (0.0-2.0, higher = more creative)
+  temperature: 0.9
+  # Maximum tokens for response
+  max_tokens: 16000
+  # Timeout in seconds
+  timeout: 120
+  # Optional: Override base URL for API (e.g., for local models)
+  # base_url: http://localhost:8000/v1
+
+tts:
+  # TTS provider: openai, elevenlabs, local, mock
+  # Use "mock" for testing without generating actual audio
+  provider: mock
+  # Optional: Path to custom voice mapping file
+  # voice_mapping_file: data/voices.yaml
+
+paths:
+  # Directory for generated episodes
+  scenes_dir: scenes
+  # Directory for data files (characters, shots, voices)
+  data_dir: data
+  # Directory for prompt templates
+  templates_dir: templates
+  # Directory for placeholder audio files
+  placeholders_dir: placeholders
+
+# Enable debug mode for verbose logging
+debug: false
+# Log level: DEBUG, INFO, WARNING, ERROR
+log_level: INFO

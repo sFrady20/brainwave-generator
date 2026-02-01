@@ -1,0 +1,44 @@
+# Voice mappings for TTS providers
+# Maps character IDs to provider-specific voice identifiers
+
+# OpenAI TTS voices: alloy, echo, fable, onyx, nova, shimmer
+openai:
+  Art: onyx       # Older, authoritative male
+  Nia: nova       # Professional female
+  Liam: echo      # Energetic male
+  Carmen: nova    # Upbeat female
+  Marcus: onyx    # Deep, warm male
+  Dave: fable     # Friendly male
+  Rachel: shimmer # Young, bright female
+  Devika: shimmer # Creative female
+  Marko: echo     # Casual male
+  Sam: alloy      # Neutral, serious female
+  Mike: fable     # Friendly, casual male
+
+# ElevenLabs voices (add your voice IDs here)
+elevenlabs:
+  Art: ""
+  Nia: ""
+  Liam: ""
+  Carmen: ""
+  Marcus: ""
+  Dave: ""
+  Rachel: ""
+  Devika: ""
+  Marko: ""
+  Sam: ""
+  Mike: ""
+
+# Mock voices (uses placeholder files from placeholders/ directory)
+mock:
+  Art: Rodney
+  Nia: Karen
+  Liam: Cillian
+  Carmen: Mia
+  Marcus: Obinna
+  Dave: Tom
+  Rachel: Lisa
+  Devika: Shilpa
+  Marko: Bruce
+  Sam: Jodie
+  Mike: Ronald
