@@ -9,6 +9,10 @@ characters:
       and has been running it for over 40 years. Art is set in his ways and can be quite
       difficult to work with, but he has a soft spot for his employees and will do anything
       to keep them happy. He has a tendency to fall asleep during important meetings.
+    quirks: >-
+      Confused by modern things, trails off mid-sentence when falling asleep, out of touch
+      with technology, paranoid about new things, speaks like a bewildered old man not a
+      clever wit.
     gender: male
     patterns:
       - "arthur"
@@ -16,7 +20,7 @@ characters:
       - "beecham"
     voice_mappings:
       openai: onyx
-      elevenlabs: ""  # Add ElevenLabs voice ID
+      elevenlabs: ""
       mock: Rodney
 
   - id: Nia
@@ -30,6 +34,9 @@ characters:
       fair boss. Outside of work, Nia is a fitness enthusiast who enjoys running. She has a
       habit of trying to use business jargon in everyday conversations, throwing out phrases
       like "let's circle back" or "touch base" during casual conversations.
+    quirks: >-
+      Overuses corporate jargon unironically ("circle back", "leverage", "synergize", "let's
+      table that", "action items"). Treats every situation as a business problem to optimize.
     gender: female
     patterns:
       - "(?:^|\\s|\")nia(?:$|\\s|\")"
@@ -45,6 +52,9 @@ characters:
       The Director of Sales. Liam is a bit of a hotshot and knows it. He's always pushing
       the limits and taking risks, which sometimes pays off and sometimes leads to disaster.
       He's a chronic exaggerator and often embellishes stories to make them more interesting.
+    quirks: >-
+      Exaggerates everything wildly, treats every situation as a sales opportunity, delusionally
+      confident, always looking for an angle or a deal.
     gender: male
     patterns:
       - "(?:^|\\s|\")liam(?:$|\\s|\")"
@@ -61,6 +71,9 @@ characters:
       late, coffee-addicted social butterfly. Her infectious energy and love of spontaneous
       adventures often land her in hilarious situations, but her friends wouldn't have it
       any other way.
+    quirks: >-
+      Perpetually needs coffee, trails off mid-thought, often confused about what's happening,
+      distracted, late to understand the situation.
     gender: female
     patterns:
       - "carmen"
@@ -79,6 +92,9 @@ characters:
       outgoing personality, Marcus can also be quite sensitive and emotional. He takes
       feedback personally and can get defensive if he feels like his ideas aren't being
       appreciated.
+    quirks: >-
+      Takes everything personally, gets defensive quickly ("What's THAT supposed to mean?"),
+      dramatic reactions to small slights, sensitive about criticism.
     gender: male
     patterns:
       - "marcus"
@@ -94,6 +110,9 @@ characters:
       The project manager. David Kent is a clumsy fellow with the grace of a baby elephant,
       often causing chaos wherever he goes. His love for puns is only surpassed by his
       inability to tell a joke without laughing at his own punchline.
+    quirks: >-
+      Makes terrible puns constantly, laughs at his own jokes before finishing them,
+      says "Get it? Because—" and gets cut off, bumbles through sentences.
     gender: male
     patterns:
       - "dave"
@@ -112,6 +131,9 @@ characters:
       climbing the corporate ladder but can't resist the office gossip. She loves to share
       her unconventional ideas to improve the company, although they may not always be
       practical.
+    quirks: >-
+      Overshares, anxious, over-prepares everything ("I made a spreadsheet! I color-coded it!"),
+      eager to please, gets nervous easily.
     gender: female
     patterns:
       - "rachel"
@@ -128,6 +150,9 @@ characters:
       the box. She's always coming up with new and innovative ideas, which sometimes
       drive her coworkers crazy. She's a bit of a scatterbrain and often forgets
       important details.
+    quirks: >-
+      Scatterbrained, starts explaining something then forgets mid-sentence, gets distracted,
+      loses track of conversations, "Wait, what were we talking about?"
     gender: female
     patterns:
       - "devika"
@@ -148,6 +173,9 @@ characters:
       a chatterbox and loves to tell stories, often interrupting others to share his
       latest anecdote. Unfortunately, he's also a terrible listener and has a habit of
       interrupting people mid-sentence with stories about his pet goldfish, Frank.
+    quirks: >-
+      Interrupts with irrelevant stories, ALWAYS mentions his goldfish Frank, Australian
+      slang, terrible listener, "That reminds me of the time Frank—"
     gender: male
     patterns:
       - "marko"
@@ -164,6 +192,9 @@ characters:
       lookout for any potential threats. She's tough but fair and has no sense of humor.
       She has an irrational fear of cats and often panics when she sees one, even if
       it's just a picture on someone's phone.
+    quirks: >-
+      Zero sense of humor, takes everything literally and seriously, doesn't understand
+      jokes or sarcasm, irrational fear of cats.
     gender: female
     patterns:
       - "(?:^|\\s|\")sam(?:$|\\s|\")"
@@ -180,6 +211,9 @@ characters:
       The head of security. Mike is a bit of a goofball and likes to joke around. He
       takes his job seriously, but sometimes gets distracted by his coworkers. He's
       easily distracted and often forgets what he's supposed to be doing.
+    quirks: >-
+      Easily distracted, goes off on tangents, forgets what he was doing mid-task,
+      casual about things he should take seriously.
     gender: male
     patterns:
       - "mike"

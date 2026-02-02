@@ -15,6 +15,7 @@ class Character(BaseModel):
     full_name: str
     description: str
     gender: Literal["male", "female"]
+    quirks: str = ""  # Speech patterns and personality quirks for dialog writing
     patterns: list[str] = Field(default_factory=list)  # Regex patterns for matching
     voice_mappings: dict[str, str] = Field(default_factory=dict)  # provider -> voice
 

@@ -17,29 +17,30 @@ The show is NOT:
 
 ## WRITING STYLE
 
+**THE KEY PRINCIPLE:**
+Each SCENE should have one funny premise that builds and escalates. The humor comes from the situation getting weirder, not from each character delivering independent zingers. Characters react to the premise in their own way based on their personality.
+
 **DO:**
-- Write dialog like real cynical office workers talk - incomplete sentences, interruptions, trailing off
-- Let characters be mean, petty, selfish, and oblivious
-- Have characters casually reveal disturbing things about themselves
-- Use deadpan delivery for absurd statements
-- Let jokes breathe - not every line needs to be funny
-- Include non-sequiturs and characters talking past each other
-- Have characters fixate on weird irrelevant details
-- Write arguments that escalate illogically
+- Give each scene ONE absurd idea that escalates through the conversation
+- Let characters react to the premise differently based on who they are
+- Build on the same joke/concept across multiple lines rather than rapid-fire new jokes
+- Include normal reactions mixed in - not every line advances the humor
+- Use character quirks naturally (Nia's jargon, Dave's puns, Marko's goldfish stories)
+- Let the funny premise do the work - characters can react plainly to absurd things
 
 **DON'T:**
-- Write "tech humor" or programming jokes
-- Have characters explain what's funny
-- Use obvious setups followed by punchlines
-- Make characters too self-aware about the absurdity
-- Write wholesome moments or character growth
-- Use catchphrases or running gags within an episode
-- Have neat resolutions where everyone learns something
+- Try to make every single line funny independently
+- Have characters compete to be the wittiest
+- Abandon a funny premise to start a new joke
+- Write "tech humor" or programming puns
+- Forget to use character-specific speech patterns
+- Have everyone understand and react cleverly to absurdity
 
 ## CHARACTERS
 
 {% for char in characters %}
 {{ loop.index }}. **{{ char.id }}** - {{ char.description }}
+   - *Voice/Quirks:* {{ char.quirks }}
 {% endfor %}
 
 ## AVAILABLE SHOTS
@@ -64,7 +65,7 @@ Dialog:
 
 Inflections: deadpan, annoyed, defensive, confused, dismissive, excited, nervous, whispering, trailing off, interrupting, sarcastic, sincere, disturbed
 
-**Example of GOOD dialog:**
+**Example of GOOD dialog - one premise that builds:**
 ```
 >> [15] > 3/5 - Art, Marcus, Carmen
 :: Art : confused : I've been getting emails from myself. Future me. He seems angry about something I haven't done yet.
@@ -76,7 +77,13 @@ Inflections: deadpan, annoyed, defensive, confused, dismissive, excited, nervous
 :: Art : interrupting : He only talks about the betrayal. The great betrayal.
 ```
 
-Notice: No punchlines. No one comments on how weird it is. Characters just react like this is a normal work problem.
+**Why this works:**
+- ONE funny premise (Art getting emails from future self) that BUILDS across the whole scene
+- Each line adds to the same joke rather than starting new ones
+- "The divorce I'm not having yet" escalates the absurdity
+- "The great betrayal" is the payoff after building tension
+- Marcus and Carmen react like this is a normal work problem
+- Art stays in character - confused, paranoid old man energy
 
 ## CONSTRAINTS
 
