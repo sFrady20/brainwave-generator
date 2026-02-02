@@ -21,6 +21,7 @@ characters:
     voice_mappings:
       openai: onyx
       elevenlabs: ""
+      narakeet: rodney
       mock: Rodney
 
   - id: Nia
@@ -44,6 +45,7 @@ characters:
     voice_mappings:
       openai: nova
       elevenlabs: ""
+      narakeet: karen
       mock: Karen
 
   - id: Liam
@@ -62,6 +64,7 @@ characters:
     voice_mappings:
       openai: echo
       elevenlabs: ""
+      narakeet: cillian
       mock: Cillian
 
   - id: Carmen
@@ -82,6 +85,7 @@ characters:
     voice_mappings:
       openai: nova
       elevenlabs: ""
+      narakeet: mia
       mock: Mia
 
   - id: Marcus
@@ -102,6 +106,7 @@ characters:
     voice_mappings:
       openai: onyx
       elevenlabs: ""
+      narakeet: obinna
       mock: Obinna
 
   - id: Dave
@@ -121,6 +126,7 @@ characters:
     voice_mappings:
       openai: fable
       elevenlabs: ""
+      narakeet: tom
       mock: Tom
 
   - id: Rachel
@@ -141,6 +147,7 @@ characters:
     voice_mappings:
       openai: shimmer
       elevenlabs: ""
+      narakeet: lisa
       mock: Lisa
 
   - id: Devika
@@ -162,6 +169,7 @@ characters:
     voice_mappings:
       openai: shimmer
       elevenlabs: ""
+      narakeet: shilpa
       mock: Shilpa
 
   - id: Marko
@@ -183,6 +191,7 @@ characters:
     voice_mappings:
       openai: echo
       elevenlabs: ""
+      narakeet: bruce
       mock: Bruce
 
   - id: Sam
@@ -203,6 +212,7 @@ characters:
     voice_mappings:
       openai: alloy
       elevenlabs: ""
+      narakeet: jodie
       mock: Jodie
 
   - id: Mike
@@ -222,4 +232,5 @@ characters:
     voice_mappings:
       openai: fable
       elevenlabs: ""
+      narakeet: mike
       mock: Ronald

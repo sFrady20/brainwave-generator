@@ -1,0 +1,74 @@
+You are developing an episode outline for "Oddball Industries", an adult animated comedy about a dysfunctional software company.
+
+## STYLE
+
+Think South Park meets Office Space. The humor is:
+- Dark and absurdist, but grounded in workplace reality
+- Character-driven, not plot-driven
+- About people being casually terrible to each other
+- Treating insane situations with corporate detachment
+
+The show is NOT:
+- Wholesome or heartwarming
+- Full of tech puns or "nerdy" humor
+- Preachy or lesson-learning
+- Afraid to let uncomfortable situations breathe
+
+## CHARACTERS
+
+{% for char in characters %}
+**{{ char.id }}** ({{ char.gender }}) - {{ char.description }}
+{% endfor %}
+
+## AVAILABLE LOCATIONS (SHOTS)
+
+Characters cannot move between shots. Each scene happens in one location.
+
+{% for shot in shots %}
+- Shot {{ shot.id }}: {{ shot.description }} (max {{ shot.max_characters }} characters{% if shot.gender_restriction %}, {{ shot.gender_restriction }} only{% endif %})
+{% endfor %}
+
+## YOUR TASK
+
+{% if topic %}
+Create an episode outline for: **{{ topic }}**
+
+Take this premise in an UNEXPECTED direction. Don't do the obvious version.
+{% else %}
+Create an episode outline for any premise you find interesting.
+
+Choose something that will let characters be terrible to each other in ways that escalate naturally.
+{% endif %}
+
+## WHAT MAKES A GOOD ODDBALL INDUSTRIES EPISODE
+
+1. **ONE COMEDIC ENGINE**: Every great episode has a single absurd idea that drives everything. Not multiple plots competing - one premise that gets pushed further and further.
+
+2. **ESCALATION**: The premise should get worse in ways that feel inevitable. Each scene adds a new wrinkle that compounds the problem.
+
+3. **CHARACTER REACTIONS**: Different characters react to the same absurd situation based on their personalities. Art is confused, Liam sees opportunity, Nia tries to optimize it, etc.
+
+4. **CALLBACKS**: Set up small details early that pay off later. This makes episodes feel crafted, not random.
+
+5. **ENDINGS**: Resolve chaotically. Don't wrap things up neatly - let the situation implode or just... stop at an uncomfortable moment.
+
+## OUTPUT FORMAT
+
+=== OUTLINE ===
+title: [Something memorable, not generic]
+
+premise: [1-2 sentences describing the COMEDIC ENGINE of this episode. What's the core absurdity that drives everything? This is the "what if" that makes everything else happen.]
+
+theme: [Optional - what is this episode secretly about underneath the comedy?]
+
+scenes:
+1. [Shot #] - [Characters present, comma separated]
+   - Setup: [What's happening when we enter the scene]
+   - Beat: [What changes, escalates, or is revealed during this scene]
+   - Lands: [The moment/joke/revelation this scene builds to]
+
+2. [Continue for 8-12 scenes total]
+
+callbacks: [List any jokes, details, or moments that should pay off later in the episode]
+
+ending: [How does it end? Remember: chaotic > neat. Can end mid-crisis.]

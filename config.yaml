@@ -7,22 +7,39 @@ llm:
   # Model to use for generation
   model: gpt-5.2
   # Temperature for generation (0.0-2.0, higher = more creative)
-  temperature: 1.5
+  temperature: 1.3
   # Timeout in seconds
-  timeout: 120
+  timeout: 300
   # Optional: Override base URL for API (e.g., for local models)
   # base_url: http://localhost:8000/v1
 
 tts:
-  # TTS provider: openai, elevenlabs, local, mock
+  # TTS provider: openai, elevenlabs, narakeet, local, mock
   # Use "mock" for testing without generating actual audio
-  provider: mock
+  provider: narakeet
   # Optional: Path to custom voice mapping file
   # voice_mapping_file: data/voices.yaml
 
+storage:
+  # Storage provider for completed episodes: local, s3, r2
+  provider: r2
+  # S3/R2 bucket name
+  bucket: brainwave
+  # Endpoint URL for S3-compatible services (R2, MinIO)
+  endpoint_url: https://13ba9e8c713001217a21655c75bfcc0a.r2.cloudflarestorage.com
+  # Region (use "auto" for R2)
+  region: auto
+  # Key prefix for all uploads
+  prefix: oddball/episodes/
+  # Credentials can also be set via environment variables:
+  # - R2_ACCESS_KEY_ID / R2_SECRET_ACCESS_KEY (for Cloudflare R2)
+  # - AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY (for AWS S3)
+
 paths:
-  # Directory for generated episodes
+  # Directory for completed episodes (used when storage.provider is "local")
   scenes_dir: scenes
+  # Directory for work-in-progress episodes (always local, gitignored)
+  incomplete_dir: .incomplete
   # Directory for data files (characters, shots, voices)
   data_dir: data
   # Directory for prompt templates

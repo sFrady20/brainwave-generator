@@ -13,6 +13,7 @@ from brainwave.models.script import DialogLine
 from brainwave.parser import WaveLangParser
 from brainwave.tts.base import TTSProvider, TTSResult
 from brainwave.tts.mock import MockTTSProvider
+from brainwave.tts.narakeet import NarakeetTTSProvider
 from brainwave.tts.openai import OpenAITTSProvider
 
 logger = structlog.get_logger()
@@ -40,6 +41,13 @@ def get_tts_provider(config: AppConfig) -> TTSProvider:
         return OpenAITTSProvider(
             api_key=api_key.get_secret_value(),
             base_url=config.tts.base_url,
+        )
+
+    elif provider_name == "narakeet":
+        if not config.tts.api_key:
+            raise ValueError("Narakeet API key required for Narakeet TTS. Set NARAKEET_API_KEY in .env")
+        return NarakeetTTSProvider(
+            api_key=config.tts.api_key.get_secret_value(),
         )
 
     elif provider_name == "local":

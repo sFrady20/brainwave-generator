@@ -56,3 +56,6 @@ htmlcov/
 
 # Logs
 *.log
+
+# Incomplete episodes (work in progress)
+.incomplete/
